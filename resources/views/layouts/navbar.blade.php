@@ -10,8 +10,8 @@
     <!-- Right Container (Date & Time with Background) -->
 <div class="flex justify-end pr-4">
     <div class="bg-green-600 text-white px-4 py-2 rounded-lg shadow-md">
-        <span id="date" class="block"></span>
-        <span id="time" class="block"></span>
+        <span id="date" class="block" style="font-family: 'Urbanist', sans-serif;"></span>
+        <span id="time" class="block" style="font-family: 'Urbanist', sans-serif;"></span>
     </div>
 </div>
 

@@ -4,15 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 class Ticket extends Model {
     use HasFactory;
 
-    protected $fillable = ['ticket_number', 'status'];
+    protected $fillable = ['queue_type', 'ticket_number', 'status'];
 
-    // Function to generate a unique ticket number
-    public static function generateTicketNumber() {
-        $lastTicket = self::latest()->first();
-        $lastNumber = $lastTicket ? intval(substr($lastTicket->ticket_number, 3)) : 0;
-        return 'TKT' . str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
+    // Function to generate a unique ticket number based on queue type
+    public static function generateTicketNumber($queueType) {
+        $prefix = strtoupper($queueType) . '-'; // Prefix (A-, B-, R-)
+
+        // Get last ticket for this type
+        $lastTicket = self::where('queue_type', $queueType)->latest()->first();
+        $lastNumber = $lastTicket ? intval(substr($lastTicket->ticket_number, 2)) : 0;
+
+        return $prefix . str_pad($lastNumber + 1, 5, '0', STR_PAD_LEFT);
     }
 }

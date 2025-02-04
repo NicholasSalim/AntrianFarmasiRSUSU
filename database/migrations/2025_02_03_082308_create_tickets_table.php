@@ -11,14 +11,17 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up() {
-        Schema::create('tickets', function (Blueprint $table) {
-            $table->id();
-            $table->string('ticket_number')->unique(); // Auto-generated ticket number
-            $table->string('status')->default('pending'); // Ticket status (pending, completed)
-            $table->timestamps();
-        });
-    }
+    public function up()
+{
+    Schema::create('tickets', function (Blueprint $table) {
+        $table->id();
+        $table->string('queue_type'); // 'A', 'B', 'R'
+        $table->string('ticket_number')->unique();
+        $table->string('status')->default('pending');
+        $table->timestamps();
+    });
+}
+
 
 
     /**

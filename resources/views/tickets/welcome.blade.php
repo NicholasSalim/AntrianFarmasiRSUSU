@@ -10,7 +10,7 @@
     <p class="text-2xl text-white my-6" style="font-family: 'Urbanist', sans-serif;">Farmasi Rumah Sakit Prof. Dr. Chairuddin P. lubis</p>
 
     <!-- Button -->
-    <a href="/generate">
+    <a href="/tickets/generate">
     <button class="mt-6 px-32 py-5 bg-green-600 text-white text-2xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
     Buat Ticket
 </button>

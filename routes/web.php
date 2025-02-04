@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 // Ticket generation page
-Route::get('/generate', function () {
+Route::get('/tickets/generate', function () {
     return view('tickets.generate'); // Page with "Generate Ticket" button
 });
 
