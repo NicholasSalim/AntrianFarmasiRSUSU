@@ -45,7 +45,7 @@
         </a>
 
         <!-- Cek Antrian Button (Right) -->
-        <a href="/antrian" 
+        <a href="/tickets/queue" 
             class="px-6 py-3 mt-12  bg-green-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-green-500 transition duration-300 text-center w-1/2 ml-2">
             Cek Antrian
         </a>

@@ -35,11 +35,21 @@ class TicketController extends Controller {
     public function queue()
 {
     // Fetch the first active ticket or the first pending ticket
-    $currentTicket = Ticket::where('status', 'active')->first() ?? Ticket::where('status', 'pending')->first();
+    $currentTicket = Ticket::where('status', 'active')->first(); 
 
-    // Fetch all pending tickets
-    $pendingTickets = Ticket::where('status', 'pending')->get();
+// Ensure the first ticket becomes active if no active ticket exists
+if (!$currentTicket) {
+    $currentTicket = Ticket::where('status', 'pending')->orderBy('created_at', 'asc')->first();
+    if ($currentTicket) {
+        $currentTicket->update(['status' => 'active']); // Mark as active
+    }
+}
 
+// Get pending tickets (excluding the active one)
+$pendingTickets = Ticket::where('status', 'pending')
+                        ->where('id', '!=', optional($currentTicket)->id)
+                        ->orderBy('created_at', 'asc')
+                        ->get();
     // Pass both current ticket and pending tickets to the view
     return view('tickets.queue', compact('currentTicket', 'pendingTickets'));
 }
