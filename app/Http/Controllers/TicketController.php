@@ -31,4 +31,29 @@ class TicketController extends Controller {
         $tickets = Ticket::latest()->get();
         return view('tickets.index', compact('tickets'));
     }
+
+    public function display()
+    {
+        // Fetch the first active ticket or the first pending ticket
+        $currentTicket = Ticket::where('status', 'active')->first() ?? Ticket::where('status', 'pending')->first();
+        return view('tickets.display', compact('currentTicket'));
+    }
+
+    // Move to the next ticket
+    public function next()
+    {
+        // Mark the current active ticket as completed
+        $currentTicket = Ticket::where('status', 'active')->first();
+        if ($currentTicket) {
+            $currentTicket->update(['status' => 'completed']);
+        }
+
+        // Fetch the next pending ticket and mark it as active
+        $nextTicket = Ticket::where('status', 'pending')->first();
+        if ($nextTicket) {
+            $nextTicket->update(['status' => 'active']);
+        }
+
+        return redirect()->route('tickets.display');
+    }
 }

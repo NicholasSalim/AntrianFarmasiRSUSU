@@ -15,6 +15,11 @@
     Buat Ticket
 </button>
 
+    <!-- Button: Status -->
+    <a href="/tickets/display">
+        <button class="my-6 px-32 py-5 bg-blue-600 text-white text-2xl font-semibold rounded-lg shadow-md shadow-black hover:bg-blue-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
+            Status
+        </button>
     </a>
 </div>
 @endsection
