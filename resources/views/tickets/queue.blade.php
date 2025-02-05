@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex min-h-screen">
+<div class="flex min-h-screen  px-16 justify-between">
     <!-- Left Column: Current Queue Display and Button -->
     <div class="flex flex-col items-center justify-center w-1/2">
         <!-- Header -->

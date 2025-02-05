@@ -76,4 +76,16 @@ class TicketController extends Controller {
 
     return redirect()->route('tickets.queue');
 }
+
+public function showQueue()
+{
+    $currentTicket = Ticket::where('status', 'active')->latest()->first();
+    $pendingTickets = Ticket::where('status', 'pending')->orderBy('created_at')->paginate(4);
+
+    
+    return view('tickets.display', compact('currentTicket', 'pendingTickets'));
+}
+
+
+
 }
