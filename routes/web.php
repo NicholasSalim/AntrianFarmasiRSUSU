@@ -22,13 +22,14 @@ Route::get('/', function () {
 Route::get('/tickets/generate', function () {
     return view('tickets.generate'); // Page with "Generate Ticket" button
 });
-Route::get('/tickets/display', function () {
-    return view('tickets.display'); // Page with "Displayt" button
+Route::get('/tickets/queue', function () {
+    return view('tickets.queue'); // Page with "Display" button
 });
 
 // Ticket routes
 Route::post('/tickets/generate', [TicketController::class, 'generate'])->name('ticket.generate');
 Route::get('/tickets/{id}', [TicketController::class, 'show'])->name('ticket.show');
-Route::get('/tickets/display', [TicketController::class, 'display'])->name('tickets.display');
+Route::get('/tickets/queue', [TicketController::class, 'queue'])->name('tickets.queue');
 Route::post('/tickets/next', [TicketController::class, 'next'])->name('tickets.next');
 Route::post('/tickets/skip/{count}', [TicketController::class, 'skip'])->name('tickets.skip');
+Route::post('/tickets/set-current/{id}', [TicketController::class, 'setCurrent'])->name('tickets.setCurrent');

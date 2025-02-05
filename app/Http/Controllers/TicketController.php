@@ -32,12 +32,17 @@ class TicketController extends Controller {
         return view('tickets.index', compact('tickets'));
     }
 
-    public function display()
-    {
-        // Fetch the first active ticket or the first pending ticket
-        $currentTicket = Ticket::where('status', 'active')->first() ?? Ticket::where('status', 'pending')->first();
-        return view('tickets.display', compact('currentTicket'));
-    }
+    public function queue()
+{
+    // Fetch the first active ticket or the first pending ticket
+    $currentTicket = Ticket::where('status', 'active')->first() ?? Ticket::where('status', 'pending')->first();
+
+    // Fetch all pending tickets
+    $pendingTickets = Ticket::where('status', 'pending')->get();
+
+    // Pass both current ticket and pending tickets to the view
+    return view('tickets.queue', compact('currentTicket', 'pendingTickets'));
+}
 
     // Move to the next ticket
     public function next()
@@ -54,6 +59,21 @@ class TicketController extends Controller {
             $nextTicket->update(['status' => 'active']);
         }
 
-        return redirect()->route('tickets.display');
+        return redirect()->route('tickets.queue');
     }
+
+    public function setCurrent($id)
+{
+    // Mark the current active ticket as completed
+    $currentTicket = Ticket::where('status', 'active')->first();
+    if ($currentTicket) {
+        $currentTicket->update(['status' => 'completed']);
+    }
+
+    // Set the selected ticket as active
+    $newCurrentTicket = Ticket::findOrFail($id);
+    $newCurrentTicket->update(['status' => 'active']);
+
+    return redirect()->route('tickets.queue');
+}
 }

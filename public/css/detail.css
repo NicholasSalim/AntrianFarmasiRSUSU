@@ -1,0 +1,92 @@
+@media print {
+    /* Hide the dashed separator inside ticket details */
+    .border-dashed {
+        display: none !important;
+    }
+    
+    /* Hide everything except the ticket */
+    body * {
+        visibility: hidden;
+    }
+
+    /* Only show the ticket container */
+    #ticketPrint, #ticketPrint * {
+        visibility: visible;
+    }
+
+    /* Force content to fit within 1 page */
+    @page {
+        size: auto; /* Adjusts to paper size */
+        margin: 5mm; /* Minimal margins to prevent cutting */
+    }
+
+    /* Center the ticket horizontally (No vertical centering) */
+    #ticketPrint {
+        display: block;
+        width: 100%;
+        max-width: 80mm;
+        height: auto;
+        font-size: 12px; /* Slightly smaller text */
+        background: white;
+        padding: 10px 15px;
+        margin: 0 auto; /* Centers it horizontally */
+
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        page-break-inside: avoid; /* Prevents splitting */
+    }
+
+    /* Hospital Name */
+    #ticketPrint h1 {
+        font-size: 18px; /* Slightly smaller */
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    /* Border (replacing dashed border under hospital name) */
+    .hospital-name::after {
+        content: "";
+        display: block;
+        width: 100%;
+        border-top: 1px solid black; /* Thin solid border */
+        margin-top: 6px; /* Space above */
+        margin-bottom: 6px; /* Space below */
+    }
+
+    /* Date & Time Section */
+    .date-time {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        font-size: 12px; /* Smaller text */
+        margin-bottom: 8px;
+    }
+
+    /* Ticket Details */
+    .ticket-info {
+        text-align: center;
+        font-size: 14px; /* Slightly smaller */
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    /* Thank You Message */
+    .thank-you {
+        font-style: italic;
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    /* Hide buttons */
+    button, a {
+        display: none;
+    }
+
+    /* Ensure no extra margins in print mode */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+}
