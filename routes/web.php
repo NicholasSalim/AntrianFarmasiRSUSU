@@ -29,6 +29,7 @@ Route::get('/tickets/display', function () {
     return view('tickets.display'); // Page with "Display" button
 });
 
+
 // Ticket routes
 Route::post('/tickets/generate', [TicketController::class, 'generate'])->name('ticket.generate');
 Route::get('/tickets/{id}', [TicketController::class, 'show'])->name('ticket.show');

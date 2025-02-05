@@ -3,7 +3,7 @@
 @section('content')
 <div class="flex flex-col items-center justify-center min-h-screen text-center">
     <!-- Header -->
-    <h1 class="text-7xl font-bold text-red-500 mb-6" style="font-family: 'Urbanist', sans-serif;">
+    <h1 class="text-7xl font-bold text-white mb-6" style="font-family: 'Urbanist', sans-serif;">
     Selamat Datang
     </h1>
     <!-- Caption -->
