@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('content')
 <div class="flex min-h-screen px-16 justify-between" style="padding-top: 100px; padding-bottom:50px; padding-left: 100px; padding-right:100px"> <!-- Ensuring both columns align properly -->

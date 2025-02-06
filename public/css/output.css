@@ -814,6 +814,9 @@
   .border-blue-600 {
     border-color: var(--color-blue-600);
   }
+  .border-green-600 {
+    border-color: var(--color-green-600);
+  }
   .border-gray-300 {
     border-color: var(--color-gray-300);
   }
@@ -834,6 +837,9 @@
   }
   .bg-gray-600 {
     background-color: var(--color-gray-600);
+  }
+  .bg-gray-800 {
+    background-color: var(--color-gray-800);
   }
   .bg-green-500 {
     background-color: var(--color-green-500);
@@ -1158,6 +1164,13 @@
       }
     }
   }
+  .btn-outline-green {
+    background-color: white; /* White background */
+    color: #1cc02a; /* Green text (Tailwind green-500) */
+    border: 3px solid #1cc02a; /* Green outline */
+    transition: background-color 0.3s, color 0.3s;
+}
+
   .sm\:visible {
     @media (width >= 40rem) {
       visibility: visible;

@@ -16,7 +16,7 @@
         <form id="ticket-form-a" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('A')">
             @csrf
             <input type="hidden" name="queue_type" value="A">
-            <button type="submit" class="px-16 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md shadow-black hover:bg-blue-500 transition duration-300">
+            <button type="submit" class="px-16 py-3 bg-green-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
                 Buat Tiket - Tipe A
             </button>
         </form>
@@ -24,7 +24,7 @@
         <form id="ticket-form-b" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('B')">
             @csrf
             <input type="hidden" name="queue_type" value="B">
-            <button type="submit" class="px-16 py-3 bg-green-600 text-white text-lg font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300">
+            <button type="submit" class="px-16 py-3 mt-6 bg-green-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
                 Buat Tiket - Tipe B
             </button>
         </form>
@@ -32,7 +32,7 @@
         <form id="ticket-form-r" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('R')">
             @csrf
             <input type="hidden" name="queue_type" value="R">
-            <button type="submit" class="px-16 py-3 bg-red-600 text-white text-lg font-semibold rounded-lg shadow-md shadow-black hover:bg-red-500 transition duration-300">
+            <button type="submit" class="px-16 py-3 mt-6 bg-green-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
                 Buat Tiket - Tipe R
             </button>
         </form>

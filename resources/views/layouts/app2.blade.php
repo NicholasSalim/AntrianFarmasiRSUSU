@@ -13,7 +13,7 @@
    
     <body class="bg-cover bg-center bg-no-repeat " style="background-image: url('{{ asset('img/background.png') }}');">
      <!-- Navbar -->
-     @include('layouts.navbar')
+     @include('layouts.navbar2')
 
     <div class="min-h-screen flex flex-col">
         <!-- Main Content -->
