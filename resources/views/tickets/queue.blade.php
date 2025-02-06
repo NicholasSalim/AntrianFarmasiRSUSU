@@ -14,7 +14,7 @@
             <h2 class="text-3xl font-semibold text-center text-gray-700 mb-4" style="font-family: 'Urbanist', sans-serif;">
                 Nomor Antrian Saat Ini
             </h2>
-            <p class="text-6xl font-bold text-center text-gray-800" style="font-family: 'Urbanist', sans-serif;">
+            <p class="text-6xl font-bold text-center text-gray-800" style="font-family: 'Urbanist', sans-serif;" id="current-ticket">
                 {{ $currentTicket->ticket_number ?? 'Tidak ada antrian' }}
             </p>
         </div>
@@ -45,7 +45,7 @@
         @endphp
 
         <!-- Ticket Buttons -->
-        <div class="flex justify-center w-full mx-auto space-x-4 mt-4">
+        <div class="flex justify-center w-full mx-auto space-x-4 mt-4" id="ticket-list">
             @for ($col = 0; $col < 3; $col++)
                 <div class="flex flex-col space-y-4">
                     @for ($row = 0; $row < 3; $row++)
@@ -147,4 +147,33 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    // Function to update ticket content dynamically
+    function updateTicketList() {
+        $.ajax({
+            url: window.location.href, // Current page URL to fetch the content
+            type: 'GET',
+            success: function(response) {
+                // Update current ticket
+                var newCurrentTicket = $(response).find('#current-ticket').html();
+                $('#current-ticket').html(newCurrentTicket);
+
+                // Update the pending ticket list
+                var newTicketList = $(response).find('#ticket-list').html();
+                $('#ticket-list').html(newTicketList);
+            },
+            error: function() {
+                console.log('Error fetching updated content.');
+            }
+        });
+    }
+
+    // Set an interval to fetch updated content every 5 seconds
+    setInterval(function() {
+        updateTicketList();
+    }, 5000); // Refresh every 5 seconds
+</script>
 @endsection
