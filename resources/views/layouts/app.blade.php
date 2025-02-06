@@ -21,7 +21,11 @@
     </div>
 
 
-
+   
     
 </body>
+
+
+<script src="{{ asset('js/ticket-confirmation.js') }}"></script>
+
 </html>

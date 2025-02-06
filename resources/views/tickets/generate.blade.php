@@ -62,41 +62,6 @@
     </div>
 </div>
 
-<script>
-    let selectedQueueType = '';
 
-    function confirmTicket(queueType) {
-        selectedQueueType = queueType;
-        document.getElementById('queue-type').innerText = 'Tipe ' + queueType;
-        
-        // Show blur background
-        document.getElementById('blur-overlay').classList.remove('hidden');
-
-        // Show confirmation box
-        let confirmBox = document.getElementById('confirm-box');
-        confirmBox.classList.remove('hidden');
-        confirmBox.style.opacity = 0;
-        setTimeout(() => { confirmBox.style.opacity = 1; }, 100); // Smooth fade-in
-
-        // Show loading animation first, then content
-        document.getElementById('loading-animation').classList.remove('hidden');
-        document.getElementById('confirm-content').classList.add('hidden');
-        setTimeout(() => {
-            document.getElementById('loading-animation').classList.add('hidden');
-            document.getElementById('confirm-content').classList.remove('hidden');
-        }, 1000); // Simulating a 1-second loading time
-
-        return false; // Prevent form submission
-    }
-
-    function proceedToGenerate() {
-        document.getElementById(`ticket-form-${selectedQueueType.toLowerCase()}`).submit();
-    }
-
-    function closeModal() {
-        document.getElementById('confirm-box').classList.add('hidden');
-        document.getElementById('blur-overlay').classList.add('hidden');
-    }
-</script>
 
 @endsection
