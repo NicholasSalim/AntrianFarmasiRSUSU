@@ -88,23 +88,38 @@
     @endphp
 
     <!-- Left Arrow -->
-    <a href="?page={{ $prevPage }}" class="px-4 py-3 bg-gray-300 text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+    <a href="?page={{ $prevPage }}" class="px-4 py-2 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
         ⬅️
     </a>
 
+    <!-- Show "..." if there's more pages before -->
+    @if ($startPage > 1)
+        <a href="?page={{ $startPage }}" class="px-4 py-2 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+            ...
+        </a>
+    @endif
+
     <!-- Page Number Links -->
     @for ($i = $startPage; $i <= $endPage; $i++)
-        <a href="?page={{ $i }}" class="px-4 py-3 font-bold rounded-lg shadow-md transition duration-200
-            {{ $i == $currentPage ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-800 hover:bg-gray-400' }}">
+        <a href="?page={{ $i }}" class="px-4 py-2 font-bold rounded-lg shadow-md transition duration-200
+            {{ $i == $currentPage ? 'bg-gray-800 text-white' : 'bg-white text-gray-800 hover:bg-gray-400' }}">
             {{ $i }}
         </a>
     @endfor
 
+    <!-- Show "..." if there's more pages after -->
+    @if ($endPage < $totalPages)
+        <a href="?page={{ $endPage }}" class="px-4 py-2 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+            ...
+        </a>
+    @endif
+
     <!-- Right Arrow -->
-    <a href="?page={{ $nextPage }}" class="px-4 py-3 bg-gray-300 text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+    <a href="?page={{ $nextPage }}" class="px-4 py-2 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
         ➡️
     </a>
 </div>
+
 
 
 
@@ -148,32 +163,7 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-    // Function to update ticket content dynamically
-    function updateTicketList() {
-        $.ajax({
-            url: window.location.href, // Current page URL to fetch the content
-            type: 'GET',
-            success: function(response) {
-                // Update current ticket
-                var newCurrentTicket = $(response).find('#current-ticket').html();
-                $('#current-ticket').html(newCurrentTicket);
 
-                // Update the pending ticket list
-                var newTicketList = $(response).find('#ticket-list').html();
-                $('#ticket-list').html(newTicketList);
-            },
-            error: function() {
-                console.log('Error fetching updated content.');
-            }
-        });
-    }
 
-    // Set an interval to fetch updated content every 5 seconds
-    setInterval(function() {
-        updateTicketList();
-    }, 5000); // Refresh every 5 seconds
-</script>
 @endsection
