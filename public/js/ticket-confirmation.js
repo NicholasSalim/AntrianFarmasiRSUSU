@@ -82,7 +82,7 @@ function confirmSelectTicket(ticketNumber, ticketId) {
         document.getElementById('ticket-confirm-content').classList.remove('hidden');
 
         // Bold the ticket number in the message
-        document.getElementById('ticket-message').innerHTML = `Apakah anda yakin ingin memilih antrian <strong>${ticketNumber}</strong>?`;
+        document.getElementById('ticket-message').innerHTML = `Apakah anda ingin memilih antrian <strong>${ticketNumber}</strong>?`;
 
         // Set the correct form to submit when confirmed
         document.getElementById('confirm-ticket-btn').setAttribute('onclick', `proceedToSelect('${ticketId}')`);

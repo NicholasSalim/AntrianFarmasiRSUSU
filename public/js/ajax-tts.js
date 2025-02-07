@@ -1,5 +1,4 @@
 
-
     // Function to update ticket content dynamically and play TTS when ticket changes
     function updateTicketList() {
     console.log("updateTicketList() is running...");  // Log to confirm the function is being triggered
