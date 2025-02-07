@@ -11,20 +11,20 @@
 
     <!-- Button -->
     <a href="/tickets/generate">
-    <button class="mt-6 px-24 py-5 bg-green-600 text-white text-2xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
+    <button class="mt-6 px-24 py-5 bg-green-600 text-white text-2xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
     Buat Ticket
 </button>
 
     <!-- Button: Status -->
     <a href="/tickets/display">
-        <button class="mt-6 px-24 py-5 bg-green-600 text-white text-2xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
+        <button class="mt-6 px-24 py-5 bg-green-600 text-white text-2xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
             Lihat Antrian
         </button>
     </a>
 
     <!-- Button: Status -->
     <a href="/tickets/queue">
-        <button class="mt-6 px-24 py-5 bg-green-600 text-white text-2xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
+        <button class="mt-6 px-24 py-5 bg-green-600 text-white text-2xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
             Kelola Antrian
         </button>
     </a>

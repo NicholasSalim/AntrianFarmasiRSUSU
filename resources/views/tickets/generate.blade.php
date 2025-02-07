@@ -16,7 +16,7 @@
         <form id="ticket-form-a" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('A')">
             @csrf
             <input type="hidden" name="queue_type" value="A">
-            <button type="submit" class="px-16 py-3 bg-green-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
+            <button type="submit" class="px-16 py-3 bg-green-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
                 Buat Tiket - Tipe A
             </button>
         </form>
@@ -24,7 +24,7 @@
         <form id="ticket-form-b" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('B')">
             @csrf
             <input type="hidden" name="queue_type" value="B">
-            <button type="submit" class="px-16 py-3 mt-6 bg-green-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
+            <button type="submit" class="px-16 py-3 mt-6 bg-green-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
                 Buat Tiket - Tipe B
             </button>
         </form>
@@ -32,7 +32,7 @@
         <form id="ticket-form-r" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('R')">
             @csrf
             <input type="hidden" name="queue_type" value="R">
-            <button type="submit" class="px-16 py-3 mt-6 bg-green-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
+            <button type="submit" class="px-16 py-3 mt-6 bg-green-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
                 Buat Tiket - Tipe R
             </button>
         </form>
@@ -55,8 +55,8 @@
         <p class="mb-4"style="font-family: 'Urbanist', sans-serif;">Apakah anda yakin ingin membuat tiket untuk <span id="queue-type" class="font-semibold"></span>?</p>
         <div class="flex justify-center space-x-4">
            
-            <button onclick="closeModal()" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400" style="font-family: 'Urbanist', sans-serif;">Batal</button>
-            <button onclick="proceedToGenerate()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500" style="font-family: 'Urbanist', sans-serif;" >Buat Tiket</button>
+            <button onclick="closeModal()" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">Batal</button>
+            <button onclick="proceedToGenerate()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 cursor-pointer" style="font-family: 'Urbanist', sans-serif;" >Buat Tiket</button>
 
         </div>
     </div>

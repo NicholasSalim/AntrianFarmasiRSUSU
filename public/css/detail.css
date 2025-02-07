@@ -43,6 +43,22 @@
         left: 0;
     }
 
+    .date-time {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    /* Left padding for the date */
+    .date-time p:first-child {
+        padding-left: 5mm;
+    }
+
+    /* Right padding for the time */
+    .date-time p:last-child {
+        padding-right: 5mm;
+    }
+
     /* Hide buttons & links */
     button, a {
         display: none;

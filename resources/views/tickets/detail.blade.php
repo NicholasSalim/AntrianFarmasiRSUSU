@@ -31,7 +31,7 @@
 
         <!-- Print Button -->
         <button onclick="window.print()" 
-            class="my-6 w-full px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-500 transition duration-300">
+            class="my-6 w-full px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-500 transition duration-300 cursor-pointer">
             Cetak Tiket
         </button>
     </div>
@@ -40,13 +40,13 @@
     <div class="flex justify-between w-full max-w-md mt-4">
         <!-- Back Button (Left) -->
         <a href="/tickets/generate" 
-            class="px-6 py-3 mt-12 bg-gray-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-gray-500 transition duration-300 text-center w-1/2">
+            class="px-6 py-3 mt-12 bg-gray-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-gray-500 transition duration-300 text-center w-1/2 cursor-pointer">
             Kembali
         </a>
 
         <!-- Cek Antrian Button (Right) -->
         <a href="/tickets/queue" 
-            class="px-6 py-3 mt-12  bg-green-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-green-500 transition duration-300 text-center w-1/2 ml-2">
+            class="px-6 py-3 mt-12  bg-green-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-green-500 transition duration-300 text-center w-1/2 ml-2 cursor-pointer">
             Cek Antrian
         </a>
     </div>
