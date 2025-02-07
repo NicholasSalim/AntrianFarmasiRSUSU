@@ -88,8 +88,8 @@
     @endphp
 
     <!-- Left Arrow -->
-    <a href="?page={{ $prevPage }}" class="px-4 py-2 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
-        ⬅️
+    <a href="?page={{ $prevPage }}" class="px-4 py-3 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+    <img src="{{ asset('/img/icon/back.png') }}" alt="Previous" class="">
     </a>
 
     <!-- Show "..." if there's more pages before -->
@@ -115,8 +115,8 @@
     @endif
 
     <!-- Right Arrow -->
-    <a href="?page={{ $nextPage }}" class="px-4 py-2 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
-        ➡️
+    <a href="?page={{ $nextPage }}" class="px-4 py-3 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+    <img src="{{ asset('/img/icon/next.png') }}" alt="Previous" class="">
     </a>
 </div>
 
