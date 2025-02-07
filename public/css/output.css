@@ -754,6 +754,13 @@
       margin-block-end: calc(calc(var(--spacing) * 8) * calc(1 - var(--tw-space-y-reverse)));
     }
   }
+  .space-x-2 {
+    :where(& > :not(:last-child)) {
+      --tw-space-x-reverse: 0;
+      margin-inline-start: calc(calc(var(--spacing) * 2) * var(--tw-space-x-reverse));
+      margin-inline-end: calc(calc(var(--spacing) * 2) * calc(1 - var(--tw-space-x-reverse)));
+    }
+  }
   .space-x-4 {
     :where(& > :not(:last-child)) {
       --tw-space-x-reverse: 0;
@@ -1171,6 +1178,7 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
+
   .sm\:visible {
     @media (width >= 40rem) {
       visibility: visible;
@@ -1181,6 +1189,15 @@
   }
   .grid-rows-3 {
     grid-row: 3
+  }
+  .outline {
+    outline-width: 1px;
+  }
+  .outline-3 {
+    outline-width: 3px;
+  }
+  .outline-gray-800 {
+    outline-color: var(--color-gray-800);
   }
 }
 @font-face {

@@ -1,9 +1,20 @@
 @media print {
-    /* Hide the dashed separator inside ticket details */
-    .border-dashed {
-        display: none !important;
+    /* Remove any browser default margins */
+    @page {
+        size: auto; /* Adjusts to paper size */
+        margin: 0; /* No margins at all */
     }
-    
+
+    /* Ensure the printed content starts from the top */
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: flex-start !important; /* Forces content to align at the top */
+        justify-content: flex-start;
+        height: auto;
+    }
+
     /* Hide everything except the ticket */
     body * {
         visibility: hidden;
@@ -14,13 +25,7 @@
         visibility: visible;
     }
 
-    /* Force content to fit within 1 page */
-    @page {
-        size: auto; /* Adjusts to paper size */
-        margin: 5mm; /* Minimal margins to prevent cutting */
-    }
-
-    /* Center the ticket horizontally (No vertical centering) */
+    /* Ticket container (Top-aligned) */
     #ticketPrint {
         display: block;
         width: 100%;
@@ -28,62 +33,22 @@
         height: auto;
         font-size: 12px; /* Slightly smaller text */
         background: white;
-        padding: 10px 15px;
-        margin: 0 auto; /* Centers it horizontally */
-
+        padding: 0;
+        margin: 0 !important; /* Ensures no extra space */
         border-radius: 0 !important;
         box-shadow: none !important;
-        page-break-inside: avoid; /* Prevents splitting */
+        page-break-inside: avoid; /* Prevents page breaks */
+        position: absolute; /* Absolute positioning to force alignment */
+        top: 0;
+        left: 0;
     }
 
-    /* Hospital Name */
-    #ticketPrint h1 {
-        font-size: 18px; /* Slightly smaller */
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 8px;
-    }
-
-    /* Border (replacing dashed border under hospital name) */
-    .hospital-name::after {
-        content: "";
-        display: block;
-        width: 100%;
-        border-top: 1px solid black; /* Thin solid border */
-        margin-top: 6px; /* Space above */
-        margin-bottom: 6px; /* Space below */
-    }
-
-    /* Date & Time Section */
-    .date-time {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        font-size: 12px; /* Smaller text */
-        margin-bottom: 8px;
-    }
-
-    /* Ticket Details */
-    .ticket-info {
-        text-align: center;
-        font-size: 14px; /* Slightly smaller */
-        font-weight: bold;
-        margin-bottom: 10px;
-    }
-
-    /* Thank You Message */
-    .thank-you {
-        font-style: italic;
-        text-align: center;
-        margin-top: 15px;
-    }
-
-    /* Hide buttons */
+    /* Hide buttons & links */
     button, a {
         display: none;
     }
 
-    /* Ensure no extra margins in print mode */
+    /* Remove extra spacing */
     * {
         margin: 0;
         padding: 0;

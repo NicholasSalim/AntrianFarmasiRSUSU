@@ -68,8 +68,10 @@
                 </a>
             @endif
         </div>
+        
     </div>
 </div>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -137,4 +139,7 @@
         updateTicketList();
     }, 5000); // Refresh every 5 seconds
 </script>
+
 @endsection
+
+

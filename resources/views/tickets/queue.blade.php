@@ -88,23 +88,38 @@
     @endphp
 
     <!-- Left Arrow -->
-    <a href="?page={{ $prevPage }}" class="px-4 py-3 bg-gray-300 text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
-        ⬅️
+    <a href="?page={{ $prevPage }}" class="px-4 py-3 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+    <img src="{{ asset('/img/icon/back.png') }}" alt="Previous" class="">
     </a>
+
+    <!-- Show "..." if there's more pages before -->
+    @if ($startPage > 1)
+        <a href="?page={{ $startPage }}" class="px-4 py-2 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+            ...
+        </a>
+    @endif
 
     <!-- Page Number Links -->
     @for ($i = $startPage; $i <= $endPage; $i++)
-        <a href="?page={{ $i }}" class="px-4 py-3 font-bold rounded-lg shadow-md transition duration-200
-            {{ $i == $currentPage ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-800 hover:bg-gray-400' }}">
+        <a href="?page={{ $i }}" class="px-4 py-2 font-bold rounded-lg shadow-md transition duration-200
+            {{ $i == $currentPage ? 'bg-gray-800 text-white' : 'bg-white text-gray-800 hover:bg-gray-400' }}">
             {{ $i }}
         </a>
     @endfor
 
+    <!-- Show "..." if there's more pages after -->
+    @if ($endPage < $totalPages)
+        <a href="?page={{ $endPage }}" class="px-4 py-2 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+            ...
+        </a>
+    @endif
+
     <!-- Right Arrow -->
-    <a href="?page={{ $nextPage }}" class="px-4 py-3 bg-gray-300 text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
-        ➡️
+    <a href="?page={{ $nextPage }}" class="px-4 py-3 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+    <img src="{{ asset('/img/icon/next.png') }}" alt="Previous" class="">
     </a>
 </div>
+
 
 
 
@@ -120,9 +135,9 @@
     <div id="next-loading-animation" class="flex justify-center items-center">
         <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-600 border-solid"></div>
     </div>
-    <div id="next-confirm-content" class="hidden text-center">
+    <div id="next-confirm-content" class="hidden text-center" style="font-family: 'Urbanist', sans-serif;">
         <h2 class="text-lg font-bold mb-2">Panggil Antrian?</h2>
-        <p class="mb-4">Apakah anda yakin ingin memanggil antrian berikutnya?</p>
+        <p class="mb-4">Apakah anda ingin memanggil antrian berikutnya?</p>
         <div class="flex justify-center space-x-4">
             <button onclick="closeNextModal()" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400">Batal</button>
             <button onclick="proceedToNext()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500">Panggil</button>
@@ -138,8 +153,8 @@
     <div id="ticket-loading-animation" class="flex justify-center items-center">
         <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-600 border-solid"></div>
     </div>
-    <div id="ticket-confirm-content" class="hidden text-center">
-        <h2 class="text-lg font-bold mb-2">Pilih Antrian?</h2>
+    <div id="ticket-confirm-content" class="hidden text-center" style="font-family: 'Urbanist', sans-serif;">
+        <h2 class="text-lg font-bold mb-2" >Pilih Antrian?</h2>
         <p id="ticket-message" class="mb-4"></p>
         <div class="flex justify-center space-x-4">
             <button onclick="closeTicketModal()" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400">Batal</button>
@@ -148,32 +163,7 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-    // Function to update ticket content dynamically
-    function updateTicketList() {
-        $.ajax({
-            url: window.location.href, // Current page URL to fetch the content
-            type: 'GET',
-            success: function(response) {
-                // Update current ticket
-                var newCurrentTicket = $(response).find('#current-ticket').html();
-                $('#current-ticket').html(newCurrentTicket);
 
-                // Update the pending ticket list
-                var newTicketList = $(response).find('#ticket-list').html();
-                $('#ticket-list').html(newTicketList);
-            },
-            error: function() {
-                console.log('Error fetching updated content.');
-            }
-        });
-    }
 
-    // Set an interval to fetch updated content every 5 seconds
-    setInterval(function() {
-        updateTicketList();
-    }, 5000); // Refresh every 5 seconds
-</script>
 @endsection
