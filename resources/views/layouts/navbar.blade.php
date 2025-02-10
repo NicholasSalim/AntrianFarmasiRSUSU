@@ -18,8 +18,14 @@
         </a>
 
         <a href="{{ url('/tickets/queue') }}">
-            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-500 transition duration-300 cursor-pointer" style="margin-right: 50px;">
+            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-500 transition duration-300 cursor-pointer" style="margin-right: 25px;">
                 <img src="{{ asset('img/icon/queue.png') }}" alt="Icon" class="w-6 h-6">
+            </button>
+        </a>
+
+        <a href="{{ url('/tickets/display') }}">
+            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-500 transition duration-300 cursor-pointer" style="margin-right: 50px;">
+                <img src="{{ asset('img/icon/eye.png') }}" alt="Icon" class="w-6 h-6">
             </button>
         </a>
 

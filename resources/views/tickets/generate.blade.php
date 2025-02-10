@@ -11,44 +11,47 @@
         Pilih jenis antrian yang ingin diambil
     </p>
 
-    <!-- Ticket Generation Buttons -->
-    <div class="space-y-4 my-6">
+    <!-- Ticket Generation Cards -->
+    <div class="container mx-auto flex justify-center space-x-6 my-6">
         <form id="ticket-form-a" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('A')">
             @csrf
             <input type="hidden" name="queue_type" value="A">
-            <button type="submit" class="px-16 py-3 bg-green-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
-                Buat Tiket - Tipe A
+            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-lg shadow-md shadow-black hover:shadow-lg transition duration-300 cursor-pointer flex flex-col items-center justify-center">
+                <h2 class="text-xl font-semibold mb-6 p-2" style="font-family: 'Urbanist', sans-serif;">Antrian</h2>
+                <img src="/img/icon/a.png" alt="Tiket A" class="w-20 h-20 px-4 py-4">
             </button>
         </form>
 
         <form id="ticket-form-b" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('B')">
             @csrf
             <input type="hidden" name="queue_type" value="B">
-            <button type="submit" class="px-16 py-3 mt-6 bg-green-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
-                Buat Tiket - Tipe B
+            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-lg shadow-md shadow-black hover:shadow-lg transition duration-300 cursor-pointer flex flex-col items-center justify-center">
+                <h2 class="text-xl font-semibold mb-6 p-2" style="font-family: 'Urbanist', sans-serif;">Antrian</h2>
+                <img src="/img/icon/b.png" alt="Tiket B" class="w-20 h-20 px-4 py-4">
             </button>
         </form>
 
         <form id="ticket-form-r" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('R')">
             @csrf
             <input type="hidden" name="queue_type" value="R">
-            <button type="submit" class="px-16 py-3 mt-6 bg-green-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-green-500 transition duration-300 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
-                Buat Tiket - Tipe R
-            </button>
-        </form>
-
-        <!-- Clear All Tickets Button -->
-        <form id="clear-tickets-form" action="{{ route('tickets.clear') }}" method="POST" onsubmit="return confirmClearTickets()">
-            @csrf
-            <button type="submit" class="px-16 py-3 mt-6 bg-red-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-red-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
-                Clear All Tickets
+            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-lg shadow-md shadow-black hover:shadow-lg transition duration-300 cursor-pointer flex flex-col items-center justify-center">
+                <h2 class="text-xl font-semibold mb-6 p-2" style="font-family: 'Urbanist', sans-serif;">Antrian</h2>
+                <img src="/img/icon/r.png" alt="Tiket R" class="w-20 h-20 px-4 py-4">
             </button>
         </form>
     </div>
+
+    <!-- Clear All Tickets Button -->
+    <form id="clear-tickets-form" action="{{ route('tickets.clear') }}" method="POST" onsubmit="return confirmClearTickets()">
+        @csrf
+        <button type="submit" class="px-16 py-3 mt-6 bg-red-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-red-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
+            Clear All Tickets
+        </button>
+    </form>
 </div>
 
 <!-- Background Blur -->
-<div id="blur-overlay" class="fixed inset-0  backdrop-blur-md hidden"></div>
+<div id="blur-overlay" class="fixed inset-0 backdrop-blur-md hidden"></div>
 
 <!-- Confirmation Box (With Loading Animation) -->
 <div id="confirm-box" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg border border-gray-300 hidden transition-opacity">
@@ -59,13 +62,11 @@
 
     <!-- Confirmation Content (Hidden Initially) -->
     <div id="confirm-content" class="hidden text-center">
-        <h2 class="text-lg font-bold mb-2"style="font-family: 'Urbanist', sans-serif;">Buat Tiket?</h2>
-        <p class="mb-4"style="font-family: 'Urbanist', sans-serif;">Apakah anda yakin ingin membuat tiket untuk <span id="queue-type" class="font-semibold"></span>?</p>
+        <h2 class="text-lg font-bold mb-2" style="font-family: 'Urbanist', sans-serif;">Buat Tiket?</h2>
+        <p class="mb-4" style="font-family: 'Urbanist', sans-serif;">Apakah anda yakin ingin membuat tiket untuk <span id="queue-type" class="font-semibold"></span>?</p>
         <div class="flex justify-center space-x-4">
-           
             <button onclick="closeModal()" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">Batal</button>
-            <button onclick="proceedToGenerate()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 cursor-pointer" style="font-family: 'Urbanist', sans-serif;" >Buat Tiket</button>
-
+            <button onclick="proceedToGenerate()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">Buat Tiket</button>
         </div>
     </div>
 </div>

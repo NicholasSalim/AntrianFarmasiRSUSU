@@ -26,7 +26,7 @@
         <div class="w-1/3 mx-6">
             <a href="/tickets/display" class="block">
                 <div class="bg-white p-6 rounded-lg shadow-md shadow-black hover:shadow-lg transition duration-300 cursor-pointer flex flex-col items-center">
-                    <img src="/img/icon/eye.png" alt="Lihat Antrian" class="w-20 h-20 mb-4">
+                    <img src="/img/icon/eye2.png" alt="Lihat Antrian" class="w-20 h-20 mb-4">
                     <h2 class="text-xl font-semibold" style="font-family: 'Urbanist', sans-serif;">Lihat Antrian</h2>
                 </div>
             </a>
