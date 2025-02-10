@@ -36,6 +36,14 @@
                 Buat Tiket - Tipe R
             </button>
         </form>
+
+        <!-- Clear All Tickets Button -->
+        <form id="clear-tickets-form" action="{{ route('tickets.clear') }}" method="POST" onsubmit="return confirmClearTickets()">
+            @csrf
+            <button type="submit" class="px-16 py-3 mt-6 bg-red-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-red-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
+                Clear All Tickets
+            </button>
+        </form>
     </div>
 </div>
 
@@ -62,6 +70,9 @@
     </div>
 </div>
 
-
-
+<script>
+    function confirmClearTickets() {
+        return confirm('Are you sure you want to clear all tickets? This action cannot be undone.');
+    }
+</script>
 @endsection

@@ -122,9 +122,9 @@
 
         // Add a small delay to ensure the API is ready
         setTimeout(function() {
-            var msg = new SpeechSynthesisUtterance('Tiket Nomor ' + ticketNumber + ', Silahkan datang ke konter');
+            var msg = new SpeechSynthesisUtterance('Tiket Nomor ' + ticketNumber + ',Silahkan datang ke konter');
             msg.lang = 'id-ID';
-            msg.rate = 0.85;
+            msg.rate = 0.75;
             msg.pitch = 0.8;
             window.speechSynthesis.speak(msg);
         }, 500); // 500ms delay
