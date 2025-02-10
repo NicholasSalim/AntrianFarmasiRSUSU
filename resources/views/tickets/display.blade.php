@@ -117,9 +117,9 @@
     if (ticketNumber && ticketNumber !== 'Tidak Ada Antrian') {
         console.log('Speaking:', ticketNumber);  // Log the ticket number being spoken
 
-        var msg = new SpeechSynthesisUtterance('Tiket Nomor ' + ticketNumber + ',Silahkan datang ke konter');
-        msg.lang = 'id-ID';
-        msg.rate = 0.75;
+        var msg = new SpeechSynthesisUtterance('Tiket Nomor ' + ticketNumber + ',Silahkan datang ke konter, jika tidak saya panggil polisi');
+        msg.lang = 'id';
+        msg.rate = 0.85;
         msg.pitch = 0.8;
         window.speechSynthesis.speak(msg);
     } else {
