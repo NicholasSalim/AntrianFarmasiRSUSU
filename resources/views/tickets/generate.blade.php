@@ -16,7 +16,7 @@
         <form id="ticket-form-a" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('A')">
             @csrf
             <input type="hidden" name="queue_type" value="A">
-            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-lg shadow-md shadow-black hover:shadow-lg transition duration-300 cursor-pointer flex flex-col items-center justify-center">
+            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-lg shadow-md shadow-black hover:shadow-lg hover:bg-gray-400 transition duration-300 cursor-pointer flex flex-col items-center justify-center">
                 <h2 class="text-xl font-semibold mb-6 p-2" style="font-family: 'Urbanist', sans-serif;">Antrian</h2>
                 <img src="/img/icon/a.png" alt="Tiket A" class="w-20 h-20 px-4 py-4" style="width: 100px; height: 100px;">
             </button>
@@ -25,7 +25,7 @@
         <form id="ticket-form-b" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('B')">
             @csrf
             <input type="hidden" name="queue_type" value="B">
-            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-lg shadow-md shadow-black hover:shadow-lg transition duration-300 cursor-pointer flex flex-col items-center justify-center">
+            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-lg shadow-md shadow-black hover:shadow-lg hover:bg-gray-400 transition duration-300 cursor-pointer flex flex-col items-center justify-center">
                 <h2 class="text-xl font-semibold mb-6 p-2" style="font-family: 'Urbanist', sans-serif;">Antrian</h2>
                 <img src="/img/icon/b.png" alt="Tiket B" class="w-20 h-20 px-4 py-4 " style="width: 100px; height: 100px;">
             </button>
@@ -34,7 +34,7 @@
         <form id="ticket-form-r" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('R')">
             @csrf
             <input type="hidden" name="queue_type" value="R">
-            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-lg shadow-md shadow-black hover:shadow-lg transition duration-300 cursor-pointer flex flex-col items-center justify-center">
+            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-lg shadow-md shadow-black hover:shadow-lg hover:bg-gray-400 transition duration-300 cursor-pointer flex flex-col items-center justify-center">
                 <h2 class="text-xl font-semibold mb-6 p-2" style="font-family: 'Urbanist', sans-serif;">Antrian</h2>
                 <img src="/img/icon/r.png" alt="Tiket R" class="w-20 h-20 px-4 py-4" style="width: 100px; height: 100px;">
             </button>
