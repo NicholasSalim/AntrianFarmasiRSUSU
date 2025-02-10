@@ -38,4 +38,5 @@ Route::post('/tickets/next', [TicketController::class, 'next'])->name('tickets.n
 Route::post('/tickets/skip/{count}', [TicketController::class, 'skip'])->name('tickets.skip');
 Route::post('/tickets/set-current/{id}', [TicketController::class, 'setCurrent'])->name('tickets.setCurrent');
 Route::get('/tickets/display', [TicketController::class, 'showqueue'])->name('tickets.display');
+Route::post('/tickets/clear', [TicketController::class, 'clear'])->name('tickets.clear');
 

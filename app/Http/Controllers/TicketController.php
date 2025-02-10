@@ -96,6 +96,13 @@ public function showQueue()
     return view('tickets.display', compact('currentTicket', 'pendingTickets'));
 }
 
+public function clear(Request $request)
+{
+    Ticket::truncate(); // Deletes all records from the tickets table
+
+    return redirect()->route('ticket.generate')->with('success', 'All tickets have been cleared.');
+}
+
 
 
 
