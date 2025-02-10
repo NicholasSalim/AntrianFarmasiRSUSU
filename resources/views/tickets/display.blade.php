@@ -87,7 +87,7 @@ function playAirportCallSound(callback) {
         audio.pause();
         audio.currentTime = 0; // Reset audio to start position
         if (callback) callback();
-    }, 3000);
+    }, 3500);
 }
 
 
@@ -100,7 +100,7 @@ function speakTicketNumber(ticketNumber) {
         playAirportCallSound(() => {
             window.speechSynthesis.cancel();
             setTimeout(() => {
-                let msg = new SpeechSynthesisUtterance('Tiket Nomor ' + ticketNumber + ', Silahkan datang ke konter');
+                let msg = new SpeechSynthesisUtterance('Tiket Nomor ' + ticketNumber + ',Silahkan datang ke konter.');
                 msg.lang = 'id-ID';
                 msg.rate = 0.75;
                 msg.pitch = 0.8;
