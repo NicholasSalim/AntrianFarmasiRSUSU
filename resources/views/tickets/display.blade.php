@@ -76,8 +76,44 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-    // Function to update ticket content dynamically and play TTS when ticket changes
-    function updateTicketList() {
+// Function to play the airport call sound for 3 seconds
+function playAirportCallSound(callback) {
+    const audio = new Audio('/sounds/airport-call-157168.mp3'); // Path to the sound file
+    audio.volume = 1.0; // Set volume to maximum
+    audio.play();
+
+    // Stop the audio after 3 seconds
+    setTimeout(() => {
+        audio.pause();
+        audio.currentTime = 0; // Reset audio to start position
+        if (callback) callback();
+    }, 3000);
+}
+
+
+// Function to play the TTS sound
+function speakTicketNumber(ticketNumber) {
+    if (ticketNumber && ticketNumber !== 'Tidak Ada Antrian') {
+        console.log('Speaking:', ticketNumber);
+
+        // Play airport call sound first, then TTS
+        playAirportCallSound(() => {
+            window.speechSynthesis.cancel();
+            setTimeout(() => {
+                let msg = new SpeechSynthesisUtterance('Tiket Nomor ' + ticketNumber + ', Silahkan datang ke konter');
+                msg.lang = 'id-ID';
+                msg.rate = 0.75;
+                msg.pitch = 0.8;
+                window.speechSynthesis.speak(msg);
+            }, 500); // Small delay to ensure smooth transition
+        });
+    } else {
+        console.log('No valid ticket number to speak.');
+    }
+}
+
+// Function to update ticket content dynamically and play TTS when ticket changes
+function updateTicketList() {
     console.log("updateTicketList() is running...");  // Log to confirm the function is being triggered
 
     $.ajax({
@@ -111,35 +147,10 @@
     });
 }
 
-
-    // Function to play the TTS sound
-    function speakTicketNumber(ticketNumber) {
-    if (ticketNumber && ticketNumber !== 'Tidak Ada Antrian') {
-        console.log('Speaking:', ticketNumber);
-
-        // Cancel any ongoing speech
-        window.speechSynthesis.cancel();
-
-        // Add a small delay to ensure the API is ready
-        setTimeout(function() {
-            var msg = new SpeechSynthesisUtterance('Tiket Nomor ' + ticketNumber + ',Silahkan datang ke konter');
-            msg.lang = 'id-ID';
-            msg.rate = 0.75;
-            msg.pitch = 0.8;
-            window.speechSynthesis.speak(msg);
-        }, 500); // 500ms delay
-    } else {
-        console.log('No valid ticket number to speak.');
-    }
-}
-
-
-    // Set an interval to fetch updated content every 5 seconds
-    setInterval(function() {
-        updateTicketList();
-    }, 5000); // Refresh every 5 seconds
+// Set an interval to fetch updated content every 5 seconds
+setInterval(function() {
+    updateTicketList();
+}, 5000); // Refresh every 5 seconds
 </script>
 
 @endsection
-
-
