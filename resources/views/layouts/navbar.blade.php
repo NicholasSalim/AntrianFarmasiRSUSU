@@ -12,13 +12,13 @@
     <div class="flex justify-end pr-4">
     <div class="flex py-2">
         <a href="{{ url('/tickets/generate') }}">
-        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-500 transition duration-300" style="margin-right: 25px;">
+        <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-500 transition duration-300 cursor-pointer" style="margin-right: 25px;">
             <img src="{{ asset('img/icon/plus.png') }}" alt="Icon" class="w-6 h-6">
         </button>
         </a>
 
         <a href="{{ url('/tickets/queue') }}">
-            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-500 transition duration-300" style="margin-right: 50px;">
+            <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-800 hover:bg-gray-500 transition duration-300 cursor-pointer" style="margin-right: 50px;">
                 <img src="{{ asset('img/icon/queue.png') }}" alt="Icon" class="w-6 h-6">
             </button>
         </a>

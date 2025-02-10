@@ -22,7 +22,7 @@
         <!-- Next Ticket Button -->
         <form id="next-ticket-form" action="{{ route('tickets.next') }}" method="POST" onsubmit="return confirmNextTicket()" class="w-full max-w-md">
             @csrf
-            <button type="submit" class="w-full px-20 py-4 bg-green-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-green-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
+            <button type="submit" class="w-full px-20 py-4 bg-green-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-green-500 transition duration-300 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
                 Panggil Antrian Berikutnya
             </button>
         </form>
@@ -88,13 +88,13 @@
     @endphp
 
     <!-- Left Arrow -->
-    <a href="?page={{ $prevPage }}" class="px-4 py-3 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+    <a href="?page={{ $prevPage }}" class="px-4 py-3 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200 cursor-pointer">
     <img src="{{ asset('/img/icon/back.png') }}" alt="Previous" class="">
     </a>
 
     <!-- Show "..." if there's more pages before -->
     @if ($startPage > 1)
-        <a href="?page={{ $startPage }}" class="px-4 py-2 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+        <a href="?page={{ $startPage }}" class="px-4 py-2 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200 cursor-pointer">
             ...
         </a>
     @endif
@@ -102,20 +102,20 @@
     <!-- Page Number Links -->
     @for ($i = $startPage; $i <= $endPage; $i++)
         <a href="?page={{ $i }}" class="px-4 py-2 font-bold rounded-lg shadow-md transition duration-200
-            {{ $i == $currentPage ? 'bg-gray-800 text-white' : 'bg-white text-gray-800 hover:bg-gray-400' }}">
+            {{ $i == $currentPage ? 'bg-gray-800 text-white' : 'bg-white text-gray-800 hover:bg-gray-400 cursor-pointer' }}">
             {{ $i }}
         </a>
     @endfor
 
     <!-- Show "..." if there's more pages after -->
     @if ($endPage < $totalPages)
-        <a href="?page={{ $endPage }}" class="px-4 py-2 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+        <a href="?page={{ $endPage }}" class="px-4 py-2 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200 cursor-pointer">
             ...
         </a>
     @endif
 
     <!-- Right Arrow -->
-    <a href="?page={{ $nextPage }}" class="px-4 py-3 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200">
+    <a href="?page={{ $nextPage }}" class="px-4 py-3 bg-white text-gray-800 font-bold rounded-lg shadow-md hover:bg-gray-400 transition duration-200 cursor-pointer">
     <img src="{{ asset('/img/icon/next.png') }}" alt="Previous" class="">
     </a>
 </div>
@@ -139,8 +139,8 @@
         <h2 class="text-lg font-bold mb-2">Panggil Antrian?</h2>
         <p class="mb-4">Apakah anda ingin memanggil antrian berikutnya?</p>
         <div class="flex justify-center space-x-4">
-            <button onclick="closeNextModal()" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400">Batal</button>
-            <button onclick="proceedToNext()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500">Panggil</button>
+            <button onclick="closeNextModal()" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400 cursor-pointer">Batal</button>
+            <button onclick="proceedToNext()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 cursor-pointer">Panggil</button>
         </div>
     </div>
 </div>
@@ -157,8 +157,8 @@
         <h2 class="text-lg font-bold mb-2" >Pilih Antrian?</h2>
         <p id="ticket-message" class="mb-4"></p>
         <div class="flex justify-center space-x-4">
-            <button onclick="closeTicketModal()" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400">Batal</button>
-            <button id="confirm-ticket-btn" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500">Pilih</button>
+            <button onclick="closeTicketModal()" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400 cursor-pointer">Batal</button>
+            <button id="confirm-ticket-btn" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 cursor-pointer">Pilih</button>
         </div>
     </div>
 </div>
