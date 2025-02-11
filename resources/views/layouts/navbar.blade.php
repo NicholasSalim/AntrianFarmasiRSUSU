@@ -27,43 +27,35 @@
                 </button>
             </a>
 
+            <!-- User Dropdown Menu -->
+            <div class="relative" >
+                @auth
+                    <!-- Profile Button -->
+                    <button id="profileDropdownButton" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-400 cursor-pointer" style="margin-right: 50px;">
+                        <img src="{{ asset('img/icon/user.png') }}" alt="User Profile" class="w-8 h-8 rounded-full">
+                    </button>
 
-                        <!-- User Dropdown Menu -->
-                        <div class="relative">
-                            @auth
-                                <!-- Profile Button -->
-                                <button id="profileDropdownButton" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-400 cursor-pointer" style="margin-right: 50px;">
-                                    <img src="{{ asset('img/icon/user.png') }}" alt="User Profile" class="w-8 h-8 rounded-full">
-                                </button>
+                    <!-- Dropdown Menu -->
+                    <div id="profileDropdownMenu" class="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-lg hidden overflow-hidden">
+                        <a href="#" id="openChangePasswordModal" class="flex items-center justify-center px-6 py-3 text-sm font-medium transition duration-300 cursor-pointer rounded-t-lg hover:bg-gray-200" style="font-family: 'Urbanist', sans-serif;">
+                            <img src="{{ asset('img/icon/padlock.png') }}" alt="Lock Icon" class="w-5 h-5 mr-2"> 
+                            Change Password
+                        </a>
 
-                        <!-- Dropdown Menu -->
-                        <div id="profileDropdownMenu" class="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-lg hidden overflow-hidden">
-                            <a href="#" class="flex items-center justify-center px-6 py-3 text-sm font-medium transition duration-300 cursor-pointer rounded-t-lg hover:bg-gray-200 hover:rounded-t-lg" style="font-family: 'Urbanist', sans-serif;">
-                                <img src="{{ asset('img/icon/padlock.png') }}" alt="Lock Icon" class="w-5 h-5 mr-2"> 
-                                Change Password
-                            </a>
+                        <hr class="border-gray-300 mx-4">
 
-                            <hr class="border-gray-300 mx-4">
-
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button type="submit" class="flex items-center justify-center px-6 py-3 text-sm font-medium transition duration-300 cursor-pointer w-full rounded-b-lg hover:bg-gray-200 hover:rounded-b-lg" style="font-family: 'Urbanist', sans-serif;">
-                                    <img src="{{ asset('img/icon/exit.png') }}" alt="Logout Icon" class="w-5 h-5 mr-2"> 
-                                    Logout
-                                </button>
-                            </form>
-                        </div>
-
-                            @endauth
-                        </div>
-
-
-
-
-
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="flex items-center justify-center px-6 py-3 text-sm font-medium transition duration-300 cursor-pointer w-full rounded-b-lg hover:bg-gray-200" style="font-family: 'Urbanist', sans-serif;">
+                                <img src="{{ asset('img/icon/exit.png') }}" alt="Logout Icon" class="w-5 h-5 mr-2"> 
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                @endauth
+            </div>
         </div>
 
-        
         <!-- Date & Time -->
         <div class="bg-green-600 text-white px-4 py-2 rounded-lg shadow-md ml-4">
             <span id="date" class="block" style="font-family: 'Urbanist', sans-serif;"></span>
@@ -72,3 +64,43 @@
     </div>
 </nav>
 
+
+<!-- 🔹 Unique Blur Overlay -->
+<div id="blur-overlay-password" class="fixed inset-0 backdrop-blur-md bg-gray-900 bg-opacity-30 hidden z-40 transition-opacity duration-300"></div>
+
+<!-- 🔹 Change Password Modal -->
+<div id="changePasswordModalContainer" class="fixed inset-0 flex items-center justify-center hidden z-50 transition-opacity duration-300">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
+        
+        <!-- 🔹 Unique Loading Animation -->
+        <div id="password-loading-spinner" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 hidden">
+            <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-green-500 border-solid"></div>
+        </div>
+
+        <!-- 🔹 Form Content (Initially Hidden) -->
+        <div id="password-form-wrapper" class="hidden">
+            <h2 class="text-2xl font-bold mb-4 text-center">Change Password</h2>
+
+            <form id="changePasswordForm" action="{{ route('password.change') }}" method="POST">
+                @csrf
+                <div class="mb-4">
+                    <label class="block text-gray-700">Old Password</label>
+                    <input type="password" name="old_password" id="old_password" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700">New Password</label>
+                    <input type="password" name="new_password" id="new_password" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700">Confirm Password</label>
+                    <input type="password" name="confirm_password" id="confirm_password" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
+                </div>
+
+                <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Change Password</button>
+                <button type="button" onclick="closePasswordModal()" class="w-full mt-2 text-gray-600 hover:text-gray-800">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
