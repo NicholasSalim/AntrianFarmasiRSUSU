@@ -29,5 +29,6 @@
 <script src="{{ asset('js/ticket-confirmation.js') }}"></script>
 <script src="{{ asset('js/ajax-refresh-page.js') }}"></script>
 <script src="{{ asset('js/navbar.js') }}"></script>
+<script src="{{ asset('js/change-password.js') }}"></script>
 
 </html>
