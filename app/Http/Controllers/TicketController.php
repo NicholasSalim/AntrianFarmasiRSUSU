@@ -91,10 +91,11 @@ public function showQueue()
 {
     $currentTicket = Ticket::where('status', 'active')->latest()->first();
     $pendingTickets = Ticket::where('status', 'pending')->orderBy('created_at')->paginate(4);
+    $remainingTicketsCount = Ticket::where('status', 'pending')->count(); // Count pending tickets
 
-    
-    return view('tickets.display', compact('currentTicket', 'pendingTickets'));
+    return view('tickets.display', compact('currentTicket', 'pendingTickets', 'remainingTicketsCount'));
 }
+
 
 public function clear(Request $request)
 {

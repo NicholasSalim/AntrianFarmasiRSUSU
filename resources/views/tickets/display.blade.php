@@ -19,9 +19,10 @@
 
     <!-- Right Column: List of Pending Tickets -->
     <div class="w-1/2 flex flex-col pl-12" id="pending-tickets">
-        <h2 class="text-3xl font-semibold text-white mb-6" style="font-family: 'Urbanist', sans-serif;">
-            Daftar Antrian
-        </h2>
+    <h2 class="text-3xl font-semibold text-white mb-6" style="font-family: 'Urbanist', sans-serif;">
+    Daftar Antrian <span id="remaining-tickets" class="text-2xl text-gray-300 " style="margin-left: 280px;"> (Sisa Antrian: {{ $remainingTicketsCount }})</span>
+</h2>
+
 
         @php
             $ticketsPerPage = 4; // 2x2 Layout (4 tickets per page)
@@ -100,7 +101,7 @@ function speakTicketNumber(ticketNumber) {
         playAirportCallSound(() => {
             window.speechSynthesis.cancel();
             setTimeout(() => {
-                let msg = new SpeechSynthesisUtterance('Tiket Nomor ' + ticketNumber + ',Silahkan datang ke konter.');
+                let msg = new SpeechSynthesisUtterance('Antrian Nomor ' + ticketNumber + ',Silahkan datang ke konter.');
                 msg.lang = 'id-ID';
                 msg.rate = 0.75;
                 msg.pitch = 0.8;
@@ -114,32 +115,31 @@ function speakTicketNumber(ticketNumber) {
 
 // Function to update ticket content dynamically and play TTS when ticket changes
 function updateTicketList() {
-    console.log("updateTicketList() is running...");  // Log to confirm the function is being triggered
+    console.log("updateTicketList() is running...");  // Debugging log
 
     $.ajax({
-        url: window.location.href, // Current page URL to fetch the content
+        url: window.location.href, // Fetch updated content
         type: 'GET',
         success: function(response) {
-            // Get the new ticket number from the response
+            // Update the current ticket number
             var newCurrentTicket = $(response).find('#current-ticket');
             var newTicketNumber = newCurrentTicket.text().trim();
-
-            // Log the current and new ticket numbers to debug
             var currentTicketText = $('#current-ticket').text().trim();
 
-            // Only trigger TTS if the ticket number has changed
+            // Trigger TTS only if the ticket number has changed
             if (newTicketNumber !== currentTicketText && newTicketNumber !== 'Tidak Ada Antrian') {
-                speakTicketNumber(newTicketNumber);  // Call the TTS function
-            } else {
-                console.log("Ticket number has not changed, no TTS triggered.");
+                speakTicketNumber(newTicketNumber);
             }
 
-            // Update the DOM with the new ticket number
             $('#current-ticket').replaceWith(newCurrentTicket);
 
             // Update the pending ticket list
             var newTicketList = $(response).find('#ticket-list');
             $('#ticket-list').replaceWith(newTicketList);
+
+            // Update the remaining ticket count
+            var newRemainingCount = $(response).find('#remaining-tickets').text();
+            $('#remaining-tickets').text(newRemainingCount);
         },
         error: function() {
             console.log('Error fetching updated content.');
@@ -147,10 +147,9 @@ function updateTicketList() {
     });
 }
 
-// Set an interval to fetch updated content every 5 seconds
-setInterval(function() {
-    updateTicketList();
-}, 5000); // Refresh every 5 seconds
+// Refresh content every 5 seconds
+setInterval(updateTicketList, 5000);
+
 </script>
 
 @endsection
