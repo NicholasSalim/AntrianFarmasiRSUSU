@@ -69,38 +69,84 @@
 <div id="blur-overlay-password" class="fixed inset-0 backdrop-blur-md bg-gray-900 bg-opacity-30 hidden z-40 transition-opacity duration-300"></div>
 
 <!-- 🔹 Change Password Modal -->
-<div id="changePasswordModalContainer" class="fixed inset-0 flex items-center justify-center hidden z-50 transition-opacity duration-300">
+<div id="changePasswordModalContainer" class="fixed inset-0 flex items-center justify-center hidden z-50 transition-opacity duration-300" style="font-family: 'Urbanist', sans-serif;">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md relative">
         
+
         <!-- 🔹 Unique Loading Animation -->
-        <div id="password-loading-spinner" class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 hidden">
-            <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-green-500 border-solid"></div>
+        <div id="password-loading-spinner" class="flex justify-center items-center">
+        <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-600 border-solid"></div>
         </div>
 
-        <!-- 🔹 Form Content (Initially Hidden) -->
-        <div id="password-form-wrapper" class="hidden">
-            <h2 class="text-2xl font-bold mb-4 text-center">Change Password</h2>
 
-            <form id="changePasswordForm" action="{{ route('password.change') }}" method="POST">
-                @csrf
-                <div class="mb-4">
-                    <label class="block text-gray-700">Old Password</label>
-                    <input type="password" name="old_password" id="old_password" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
-                </div>
+            <!-- 🔹 Form Content (Hidden by Default, Open if Errors Exist) -->
+            <div id="password-form-wrapper" class="@if ($errors->any()) block @else hidden @endif">
+                <h2 class="text-2xl font-bold mb-4 text-center">Change Password</h2>
 
-                <div class="mb-4">
-                    <label class="block text-gray-700">New Password</label>
-                    <input type="password" name="new_password" id="new_password" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
-                </div>
+                @if (session('success'))
+                    <p class="text-green-600 text-center mb-4">{{ session('success') }}</p>
+                @endif
 
-                <div class="mb-4">
-                    <label class="block text-gray-700">Confirm Password</label>
-                    <input type="password" name="confirm_password" id="confirm_password" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500">
-                </div>
+                <form id="changePasswordForm" action="{{ route('password.update') }}" method="POST">
+                    @csrf
+                    
+                    <!-- Old Password -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Old Password</label>
+                        <input type="password" name="old_password" id="old_password"
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500
+                            @error('old_password') border-red-500 @enderror">
+                        @error('old_password')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition">Change Password</button>
-                <button type="button" onclick="closePasswordModal()" class="w-full mt-2 text-gray-600 hover:text-gray-800">Cancel</button>
-            </form>
-        </div>
+                    <!-- New Password -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700">New Password</label>
+                        <input type="password" name="new_password" id="new_password"
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500
+                            @error('new_password') border-red-500 @enderror">
+                        @error('new_password')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700">Confirm Password</label>
+                        <input type="password" name="confirm_password" id="confirm_password"
+                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500
+                            @error('confirm_password') border-red-500 @enderror">
+                        @error('confirm_password')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition cursor-pointer">
+                        Change Password
+                    </button>
+                    <button type="button" onclick="closePasswordModal()" class="w-full mt-2 py-2 bg-gray-300 rounded-lg text-black hover:bg-gray-400 cursor-pointer">Cancel</button>
+                </form>
+            </div>
+
+
+
     </div>
 </div>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+        @if ($errors->any())
+            // Show modal if there are validation errors
+            document.getElementById('blur-overlay-password').classList.remove('hidden');
+            document.getElementById('changePasswordModalContainer').classList.remove('hidden');
+            document.getElementById('password-loading-spinner').classList.add('hidden'); // Hide loading
+            document.getElementById('password-form-wrapper').classList.remove('hidden'); // Show form
+        @endif
+    });
+
+   
+</script>
+
