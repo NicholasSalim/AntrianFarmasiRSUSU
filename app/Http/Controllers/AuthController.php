@@ -45,10 +45,7 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Logged out successfully.');
     }
 
-    public function showChangePasswordForm()
-    {
-        return view('auth.change-password');
-    }
+   
 
     public function changePassword(Request $request)
     {
@@ -58,7 +55,7 @@ class AuthController extends Controller
             'new_password' => [
                 'required',
                 'min:8',
-                'regex:/[^A-Za-z0-9]/', // At least one special character
+                'regex:/[^A-Za-z0-9]/', // Must include at least one special character
             ],
             'confirm_password' => 'required|same:new_password',
         ], [
@@ -71,14 +68,15 @@ class AuthController extends Controller
             'confirm_password.same' => 'The confirm password does not match the new password.',
         ]);
 
-        // Update Password
+        // Update the password
         $user = Auth::user();
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        // Logout user after changing password
+        // Logout user after password change
         Auth::logout();
 
+        // Return success response
         return redirect('/login')->with('success', 'Password changed successfully. Please log in again.');
     }
 }

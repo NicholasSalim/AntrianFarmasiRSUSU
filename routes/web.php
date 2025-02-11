@@ -26,6 +26,7 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+
 // Protected Routes (Requires Authentication)
 Route::middleware(['auth'])->group(function () {
     
@@ -45,9 +46,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tickets/{id}', [TicketController::class, 'show'])->name('ticket.show');
     Route::get('/tickets/display', [TicketController::class, 'showQueue'])->name('tickets.display');
     
-     // 🛠️ Change Password Routes
-     Route::get('/change-password', [AuthController::class, 'showChangePasswordForm'])->name('password.change');
-     Route::post('/change-password', [AuthController::class, 'changePassword'])->name('password.update');
+    
 
 });
 
@@ -60,3 +59,5 @@ Route::post('/tickets/skip/{count}', [TicketController::class, 'skip'])->name('t
 Route::post('/tickets/set-current/{id}', [TicketController::class, 'setCurrent'])->name('tickets.setCurrent');
 Route::post('/tickets/clear', [TicketController::class, 'clear'])->name('tickets.clear');
 
+// 🛠️ Change Password Routes
+Route::post('/change-password', [AuthController::class, 'changePassword'])->name('password.update');
