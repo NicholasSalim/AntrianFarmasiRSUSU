@@ -79,61 +79,111 @@
         </div>
 
 
-            <!-- 🔹 Form Content (Hidden by Default, Open if Errors Exist) -->
-            <div id="password-form-wrapper" class="@if ($errors->any()) block @else hidden @endif">
-                <h2 class="text-2xl font-bold mb-4 text-center">Change Password</h2>
+                        <!-- 🔹 Password Change Form -->
+                <div id="password-form-wrapper" class="@if ($errors->any()) block @else hidden @endif">
+                    <h2 class="text-2xl font-bold mb-4 text-center">Change Password</h2>
 
-                @if (session('success'))
-                    <p class="text-green-600 text-center mb-4">{{ session('success') }}</p>
-                @endif
+                    @if (session('success'))
+                        <p class="text-green-600 text-center mb-4">{{ session('success') }}</p>
+                    @endif
 
-                <form id="changePasswordForm" action="{{ route('password.update') }}" method="POST">
-                    @csrf
-                    
-                    <!-- Old Password -->
-                    <div class="mb-4">
-                        <label class="block text-gray-700">Old Password</label>
-                        <input type="password" name="old_password" id="old_password"
-                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500
-                            @error('old_password') border-red-500 @enderror">
-                        @error('old_password')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
+                    <form id="changePasswordForm" action="{{ route('password.update') }}" method="POST">
+                        @csrf
+                        
+                        <!-- Old Password -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700">Old Password</label>
+                            <div class="relative">
+                                <input type="password" name="old_password" id="old_password"
+                                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 pr-8 
+                                    @error('old_password') border-red-500 @enderror">
+                                <img src="{{ asset('img/icon/hide.png') }}" id="old_password_icon"
+                                    class="w-5 h-5 absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                                    onclick="togglePassword('old_password')"
+                                    data-show="{{ asset('img/icon/show.png') }}"
+                                    data-hide="{{ asset('img/icon/hide.png') }}">
+                            </div>
+                            @error('old_password')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
 
-                    <!-- New Password -->
-                    <div class="mb-4">
-                        <label class="block text-gray-700">New Password</label>
-                        <input type="password" name="new_password" id="new_password"
-                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500
-                            @error('new_password') border-red-500 @enderror">
-                        @error('new_password')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
+                        <!-- New Password -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700">New Password</label>
+                            <div class="relative">
+                                <input type="password" name="new_password" id="new_password"
+                                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 pr-10 
+                                    @error('new_password') border-red-500 @enderror">
+                                <img src="{{ asset('img/icon/hide.png') }}" id="new_password_icon"
+                                    class="w-5 h-5 absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                                    onclick="togglePassword('new_password')"
+                                    data-show="{{ asset('img/icon/show.png') }}"
+                                    data-hide="{{ asset('img/icon/hide.png') }}">
+                            </div>
+                            @error('new_password')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
 
-                    <!-- Confirm Password -->
-                    <div class="mb-4">
-                        <label class="block text-gray-700">Confirm Password</label>
-                        <input type="password" name="confirm_password" id="confirm_password"
-                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500
-                            @error('confirm_password') border-red-500 @enderror">
-                        @error('confirm_password')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
+                        <!-- Confirm Password -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700">Confirm Password</label>
+                            <div class="relative">
+                                <input type="password" name="confirm_password" id="confirm_password"
+                                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 pr-10 
+                                    @error('confirm_password') border-red-500 @enderror">
+                                <img src="{{ asset('img/icon/hide.png') }}" id="confirm_password_icon"
+                                    class="w-5 h-5 absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                                    onclick="togglePassword('confirm_password')"
+                                    data-show="{{ asset('img/icon/show.png') }}"
+                                    data-hide="{{ asset('img/icon/hide.png') }}">
+                            </div>
+                            @error('confirm_password')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
 
-                    <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition cursor-pointer">
-                        Change Password
-                    </button>
-                    <button type="button" onclick="closePasswordModal()" class="w-full mt-2 py-2 bg-gray-300 rounded-lg text-black hover:bg-gray-400 cursor-pointer">Cancel</button>
-                </form>
-            </div>
+                        <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition cursor-pointer">
+                            Change Password
+                        </button>
+                        <button type="button" onclick="closePasswordModal()" class="w-full mt-2 py-2 bg-gray-300 rounded-lg text-black hover:bg-gray-400 cursor-pointer">
+                            Cancel
+                        </button>
+                    </form>
+                </div>
+
+
+
+
 
 
 
     </div>
 </div>
+
+<!-- Background Blur for Password Change (Ensure it has higher z-index) -->
+<div id="password-blur-overlay" class="fixed inset-0 backdrop-blur-md hidden z-50"></div>
+
+<!-- Password Change Confirmation Box (Higher z-index than modal) -->
+<div id="password-confirm-box" class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg border border-gray-300 hidden transition-opacity z-50">
+    <!-- Loading Animation -->
+    <div id="password-loading-animation" class="flex justify-center items-center">
+        <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-green-600 border-solid"></div>
+    </div>
+
+    <!-- Confirmation Content (Hidden Initially) -->
+    <div id="password-confirm-content" class="hidden text-center">
+        <h2 class="text-lg font-bold mb-2">Change Password?</h2>
+        <p class="mb-4">Are you sure you want to change your password?</p>
+        <div class="flex justify-center space-x-4">
+            <button onclick="closePasswordAlertModal()" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400 cursor-pointer">Cancel</button>
+            <button onclick="proceedWithPasswordChange()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 cursor-pointer">Proceed</button>
+        </div>
+    </div>
+</div>
+
+
 
 <script>
 
