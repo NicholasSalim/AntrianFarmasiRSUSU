@@ -20,7 +20,7 @@
     <!-- Right Column: List of Pending Tickets -->
     <div class="w-1/2 flex flex-col pl-12" id="pending-tickets">
     <h2 class="text-3xl font-semibold text-white mb-6" style="font-family: 'Urbanist', sans-serif;">
-    Daftar Antrian <span id="remaining-tickets" class="text-2xl text-gray-300 " style="margin-left: 280px;"> (Sisa Antrian: {{ $remainingTicketsCount }})</span>
+    Daftar Antrian <span id="remaining-tickets" class="text-2xl text-gray-300 " style="margin-left: 350px;"> (Sisa Antrian: {{ $remainingTicketsCount }})</span>
 </h2>
 
 
@@ -43,12 +43,12 @@
                             $ticket = $currentTickets->skip($index)->first(); // Get the correct ticket
                         @endphp
                         @if($ticket)
-                            <div class="bg-white text-6xl text-gray-800 p-24 font-bold py-10 px-16 rounded-3xl shadow-md flex items-center justify-center w-48 h-40"  style="font-family: 'Urbanist', sans-serif;">
+                            <div class="remaining-tickets bg-white text-6xl text-gray-800 p-24 font-bold py-10 px-16 rounded-3xl shadow-md flex items-center justify-center w-48 h-40"  style="font-family: 'Urbanist', sans-serif;">
                                 {{ $ticket->ticket_number }}
                             </div>
                         @else
                             <!-- Placeholder to maintain layout -->
-                            <div class="py-10 px-16 w-48 h-40"></div>
+                            <div class="remaining-tickets opacity-0 pointer-events-none"></div>
                         @endif
                     @endfor
                 </div>

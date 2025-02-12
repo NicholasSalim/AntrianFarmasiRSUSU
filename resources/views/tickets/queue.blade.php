@@ -46,27 +46,27 @@
 
         <!-- Ticket Buttons -->
         <div class="flex justify-center w-full mx-auto space-x-4 mt-4" id="ticket-list">
-            @for ($col = 0; $col < 3; $col++)
-                <div class="flex flex-col space-y-4">
-                    @for ($row = 0; $row < 3; $row++)
-                        @php
-                            $index = $row * 3 + $col;
-                            $ticket = $currentTickets->skip($index)->first();
-                        @endphp
-                        @if($ticket)
-                            <form id="ticket-form-{{ $ticket->id }}" action="{{ route('tickets.setCurrent', $ticket->id) }}" method="POST" onsubmit="return confirmSelectTicket('{{ $ticket->ticket_number }}', '{{ $ticket->id }}')">
-                                @csrf
-                                <button type="submit" class="bg-white text-3xl text-gray-800 font-bold py-8 px-20 rounded-3xl shadow-md hover:bg-gray-200 transition duration-200 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
-                                    {{ $ticket->ticket_number }}
-                                </button>
-                            </form>
-                        @else
-                            <div class="py-8 px-20 opacity-0 pointer-events-none"></div>
-                        @endif
-                    @endfor
-                </div>
+    @for ($col = 0; $col < 3; $col++)
+        <div class="flex flex-col space-y-4">
+            @for ($row = 0; $row < 3; $row++)
+                @php
+                    $index = $row * 3 + $col;
+                    $ticket = $currentTickets->skip($index)->first();
+                @endphp
+                @if($ticket)
+                    <form id="ticket-form-{{ $ticket->id }}" action="{{ route('tickets.setCurrent', $ticket->id) }}" method="POST" onsubmit="return confirmSelectTicket('{{ $ticket->ticket_number }}', '{{ $ticket->id }}')">
+                        @csrf
+                        <button type="submit" class="fixed-size-button bg-white text-3xl text-gray-800 font-bold rounded-3xl shadow-md hover:bg-gray-200 transition duration-200 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
+                            {{ $ticket->ticket_number }}
+                        </button>
+                    </form>
+                @else
+                    <div class="fixed-size-button opacity-0 pointer-events-none"></div>
+                @endif
             @endfor
         </div>
+    @endfor
+</div>
 
 
         
