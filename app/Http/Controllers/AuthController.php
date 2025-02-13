@@ -56,21 +56,21 @@ class AuthController extends Controller
                'min:8',
                function ($attribute, $value, $fail) {
                    if (!preg_match('/[0-9]/', $value)) {
-                       $fail('The password must contain at least one number.');
+                       $fail('Password harus memiliki minimal satu angka.');
                    }
                    if (!preg_match('/[\W]/', $value)) {
-                       $fail('The password must contain at least one special character.');
+                       $fail('Password harus memiliki simbol/karakter spesial.');
                    }
                },
            ],
            'confirm_password' => 'required|same:new_password',
        ], [
-           'old_password.required' => 'The old password field is required.',
-           'old_password.current_password' => 'The old password is incorrect.',
-           'new_password.required' => 'The new password field is required.',
-           'new_password.min' => 'The new password must be at least 8 characters.',
-           'confirm_password.required' => 'The confirm password field is required.',
-           'confirm_password.same' => 'The confirm password does not match the new password.',
+           'old_password.required' => 'Password lama harus diisi.',
+           'old_password.current_password' => 'Password lama salah.',
+           'new_password.required' => 'Password baru harus diisi.',
+           'new_password.min' => 'Password baru minimal 8 huruf.',
+           'confirm_password.required' => 'Konfirmasi Password baru harus diisi.',
+           'confirm_password.same' => 'Konfirmasi Password baru tidak sesuai.',
        ]);
    
        // Update the password

@@ -85,16 +85,16 @@
             <!-- Show specific password errors under the New Password field -->
             @foreach ($errors->get('password') as $message)
                 @if (str_contains($message, 'at least one number'))
-                    <p class="text-red-500 text-sm mt-1">Password harus memiliki minimal satu angka.</p>
+                    <p class="text-red-500 text-sm mt-1">The password must contain at least one number.</p>
                 @elseif (str_contains($message, 'at least one special character'))
-                    <p class="text-red-500 text-sm mt-1">Password harus memiliki simbol/karakter spesial.</p>
+                    <p class="text-red-500 text-sm mt-1">The password must contain at least one special character.</p>
                 @elseif (!str_contains($message, 'confirmation')) {{-- Ignore confirmation error here --}}
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @endif
             @endforeach
 
             <!-- Confirm Password Input -->
-            <label class="block text-gray-700 mt-2">Konfirmasi Password Baru</label>
+            <label class="block text-gray-700 mt-2">Konfirmasi Password</label>
             <div class="relative w-full">
                 <input type="password" name="password_confirmation" id="confirm-password" required
                     class="w-full px-4 py-2 border rounded-lg pr-10 @error('password_confirmation') border-red-500 @enderror">
@@ -167,7 +167,7 @@
         let code = document.getElementById("verification_code").value;
 
         if (!code) {
-            document.getElementById("error-message").textContent = "Tolong masukkan kode verifikasi.";
+            document.getElementById("error-message").textContent = "Please enter the verification code.";
             document.getElementById("error-message").classList.remove("hidden");
             return;
         }

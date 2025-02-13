@@ -50,7 +50,7 @@ public function verifyCode(Request $request)
                 ->first();
 
     if (!$user) {
-        return response()->json(['success' => false, 'message' => 'Invalid or expired code.'], 400);
+        return response()->json(['success' => false, 'message' => 'Kode Verifikasi Tidak Sesuai.'], 400);
     }
 
     // Store email in session for password reset
@@ -58,6 +58,7 @@ public function verifyCode(Request $request)
 
     return response()->json(['success' => true]);
 }
+
 
 
 public function resetPassword(Request $request)
@@ -69,18 +70,19 @@ public function resetPassword(Request $request)
             'min:8',
             function ($attribute, $value, $fail) {
                 if (!preg_match('/[0-9]/', $value)) {
-                    $fail('Password harus memiliki minimal satu angka.');
+                    $fail('Password harus memiliki setidaknya satu angka.');
                 }
                 if (!preg_match('/[\W]/', $value)) {
-                    $fail('Password harus memiliki simbol/karakter spesial.');
+                    $fail('Password harus memiliki setidaknya satu karakter spesial.');
                 }
             },
-            'confirmed'
         ],
+        'password_confirmation' => 'required|same:password',
     ], [
-        'password.required' => 'Password harus diisi.',
-        'password.min' => 'Password minimal 8 huruf.',
-        'password.confirmed' => 'Konfirmasi password tidak sesuai.',
+        'password.required' => 'Kolom password harus diisi.',
+        'password.min' => 'Password harus memiliki minimal 8 karakter.',
+        'password_confirmation.required' => 'Kolom konfirmasi password harus diisi.',
+        'password_confirmation.same' => 'Konfirmasi password tidak cocok dengan password baru.',
     ]);
 
     // Retrieve the email from session instead of user input
@@ -107,9 +109,4 @@ public function resetPassword(Request $request)
 
     return redirect('/login')->with('success', 'Password has been reset. You can now log in.');
 }
-
-
-
-
-
 }
