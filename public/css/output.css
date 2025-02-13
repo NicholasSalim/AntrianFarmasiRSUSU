@@ -924,6 +924,9 @@
   .bg-gray-800 {
     background-color: var(--color-gray-800);
   }
+  .bg-green-200 {
+    background-color: var(--color-green-200);
+  }
   .bg-green-500 {
     background-color: var(--color-green-500);
   }
@@ -1201,6 +1204,9 @@
   }
   .text-green-500 {
     color: var(--color-green-500);
+  }
+  .text-green-700 {
+    color: var(--color-green-700);
   }
   .capitalize {
     text-transform: capitalize;

@@ -3,7 +3,7 @@
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +26,12 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+
+
+Route::view('/forgot-password', 'auth.forgot-password');
+Route::post('/forgot-password/send-code', [ForgotPasswordController::class, 'sendCode']);
+Route::post('/forgot-password/verify-code', [ForgotPasswordController::class, 'verifyCode']);
+Route::post('/forgot-password/reset-password', [ForgotPasswordController::class, 'resetPassword']);
 
 // Protected Routes (Requires Authentication)
 Route::middleware(['auth'])->group(function () {
