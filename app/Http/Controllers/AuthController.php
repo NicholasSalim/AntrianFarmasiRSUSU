@@ -21,9 +21,9 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ], [
-            'email.required' => 'The email field is required.',
-            'email.email' => 'Please enter a valid email address.',
-            'password.required' => 'The password field is required.',
+            'email.required' => 'Email harus diisi.',
+            'email.email' => 'Tolong masukkan Email yang terdaftar.',
+            'password.required' => 'Password harus diisi.',
         ]);
 
         // Attempt login
@@ -59,13 +59,13 @@ class AuthController extends Controller
             ],
             'confirm_password' => 'required|same:new_password',
         ], [
-            'old_password.required' => 'The old password field is required.',
-            'old_password.current_password' => 'The old password is incorrect.',
-            'new_password.required' => 'The new password field is required.',
-            'new_password.min' => 'The new password must be at least 8 characters.',
-            'new_password.regex' => 'The new password must contain at least one special character.',
-            'confirm_password.required' => 'The confirm password field is required.',
-            'confirm_password.same' => 'The confirm password does not match the new password.',
+            'old_password.required' => 'Password lama harus diisi.',
+            'old_password.current_password' => 'Password lama salah.',
+            'new_password.required' => 'Password baru harus diisi.',
+            'new_password.min' => 'Password baru minimal 8 huruf.',
+            'new_password.regex' => 'Password baru harus memiliki simbol/karakter spesial.',
+            'confirm_password.required' => 'Konfirmasi password baru harus diisi.',
+            'confirm_password.same' => 'Konfirmasi password baru harus sama dengan password baru.',
         ]);
 
         // Update the password

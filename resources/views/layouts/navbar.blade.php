@@ -39,7 +39,7 @@
                     <div id="profileDropdownMenu" class="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-lg hidden overflow-hidden">
                         <a href="#" id="openChangePasswordModal" class="flex items-center justify-center px-6 py-3 text-sm font-medium transition duration-300 cursor-pointer rounded-t-lg hover:bg-gray-200" style="font-family: 'Urbanist', sans-serif;">
                             <img src="{{ asset('img/icon/padlock.png') }}" alt="Lock Icon" class="w-5 h-5 mr-2"> 
-                            Change Password
+                            Ganti Password
                         </a>
 
                         <hr class="border-gray-300 mx-4">
@@ -48,7 +48,7 @@
                             @csrf
                             <button type="submit" class="flex items-center justify-center px-6 py-3 text-sm font-medium transition duration-300 cursor-pointer w-full rounded-b-lg hover:bg-gray-200" style="font-family: 'Urbanist', sans-serif;">
                                 <img src="{{ asset('img/icon/exit.png') }}" alt="Logout Icon" class="w-5 h-5 mr-2"> 
-                                Logout
+                                Keluar
                             </button>
                         </form>
                     </div>
@@ -81,7 +81,7 @@
 
                         <!-- 🔹 Password Change Form -->
                 <div id="password-form-wrapper" class="@if ($errors->any()) block @else hidden @endif">
-                    <h2 class="text-2xl font-bold mb-4 text-center">Change Password</h2>
+                    <h2 class="text-2xl font-bold mb-4 text-center">Ganti Password</h2>
 
                     @if (session('success'))
                         <p class="text-green-600 text-center mb-4">{{ session('success') }}</p>
@@ -92,7 +92,7 @@
                         
                         <!-- Old Password -->
                         <div class="mb-4">
-                            <label class="block text-gray-700">Old Password</label>
+                            <label class="block text-gray-700">Password Lama</label>
                             <div class="relative">
                                 <input type="password" name="old_password" id="old_password"
                                     class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 pr-8 
@@ -110,7 +110,7 @@
 
                         <!-- New Password -->
                         <div class="mb-4">
-                            <label class="block text-gray-700">New Password</label>
+                            <label class="block text-gray-700">Password Baru</label>
                             <div class="relative">
                                 <input type="password" name="new_password" id="new_password"
                                     class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 pr-10 
@@ -128,7 +128,7 @@
 
                         <!-- Confirm Password -->
                         <div class="mb-4">
-                            <label class="block text-gray-700">Confirm Password</label>
+                            <label class="block text-gray-700">Konfirmasi Password Baru</label>
                             <div class="relative">
                                 <input type="password" name="confirm_password" id="confirm_password"
                                     class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 pr-10 
@@ -145,10 +145,10 @@
                         </div>
 
                         <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition cursor-pointer">
-                            Change Password
+                            Ganti Password
                         </button>
                         <button type="button" onclick="closePasswordModal()" class="w-full mt-2 py-2 bg-gray-300 rounded-lg text-black hover:bg-gray-400 cursor-pointer">
-                            Cancel
+                            Batal
                         </button>
                     </form>
                 </div>
@@ -174,11 +174,11 @@
 
     <!-- Confirmation Content (Hidden Initially) -->
     <div id="password-confirm-content" class="hidden text-center">
-        <h2 class="text-lg font-bold mb-2">Change Password?</h2>
-        <p class="mb-4">Are you sure you want to change your password?</p>
+        <h2 class="text-lg font-bold mb-2">Ganti Password?</h2>
+        <p class="mb-4">Apakah anda yakin ingin mengubah Password?</p>
         <div class="flex justify-center space-x-4">
-            <button onclick="closePasswordAlertModal()" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400 cursor-pointer">Cancel</button>
-            <button onclick="proceedWithPasswordChange()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 cursor-pointer">Proceed</button>
+            <button onclick="closePasswordAlertModal()" class="px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400 cursor-pointer">Tidak</button>
+            <button onclick="proceedWithPasswordChange()" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 cursor-pointer">Ya</button>
         </div>
     </div>
 </div>

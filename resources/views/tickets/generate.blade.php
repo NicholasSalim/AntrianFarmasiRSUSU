@@ -44,8 +44,8 @@
     <!-- Clear All Tickets Button -->
     <form id="clear-tickets-form" action="{{ route('tickets.clear') }}" method="POST" onsubmit="return confirmClearTickets(event)">
         @csrf
-        <button type="submit" class="px-16 py-3 mt-6 bg-red-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-red-500 transition duration-300" style="font-family: 'Urbanist', sans-serif;">
-            Clear All Tickets
+        <button type="submit" class="px-16 py-3 mt-6 bg-red-600 text-white text-xl font-semibold rounded-lg shadow-md shadow-black hover:bg-red-500 transition duration-300 cursor-pointer" style="font-family: 'Urbanist', sans-serif;">
+            Hapus Semua Tiket
         </button>
     </form>
 </div>

@@ -32,10 +32,10 @@ public function sendCode(Request $request)
         });
     } catch (\Exception $e) {
         Log::error('Mail sending failed: ' . $e->getMessage()); // Log error
-        return back()->withErrors(['email' => 'Failed to send verification code. Try again.']);
+        return back()->withErrors(['email' => 'Gagal mengirim kode verifikasi. Coba lagi.']);
     }
 
-    return back()->with('success', 'Verification code sent to your email.');
+    return back()->with('success', 'Kode verifikasi telah terkirim ke email anda.');
 }
 
 
@@ -69,18 +69,18 @@ public function resetPassword(Request $request)
             'min:8',
             function ($attribute, $value, $fail) {
                 if (!preg_match('/[0-9]/', $value)) {
-                    $fail('The password must contain at least one number.');
+                    $fail('Password harus memiliki minimal satu angka.');
                 }
                 if (!preg_match('/[\W]/', $value)) {
-                    $fail('The password must contain at least one special character.');
+                    $fail('Password harus memiliki simbol/karakter spesial.');
                 }
             },
             'confirmed'
         ],
     ], [
-        'password.required' => 'The password field is required.',
-        'password.min' => 'The password must be at least 8 characters long.',
-        'password.confirmed' => 'The password confirmation does not match.',
+        'password.required' => 'Password harus diisi.',
+        'password.min' => 'Password minimal 8 huruf.',
+        'password.confirmed' => 'Konfirmasi password tidak sesuai.',
     ]);
 
     // Retrieve the email from session instead of user input

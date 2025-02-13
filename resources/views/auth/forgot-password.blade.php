@@ -44,16 +44,16 @@
                     @csrf
                     <label class="block text-gray-700">Email</label>
                     <input type="email" name="email" id="email" required class="w-full px-4 py-2 border rounded-lg">
-                    <button type="submit" class="text-blue-500 hover-underline mt-2 mb-6 cursor-pointer">Send Verification Code</button>
+                    <button type="submit" class="text-blue-500 hover-underline mt-2 mb-6 cursor-pointer">Kirim Kode Verifikasi</button>
                 </form>
 
 
 
                 <!-- Verification Code Input & Button -->
                 <div class="w-full"  style="font-family: 'Urbanist', sans-serif;"> 
-                    <label class="block text-gray-700">Enter Verification Code</label>
+                    <label class="block text-gray-700">Masukkan Kode Verifikasi</label>
                     <input type="text" id="verification_code" class="w-full px-4 py-2 border rounded-lg">
-                    <button id="verify-button" class="w-full bg-green-500 text-white my-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer transition">Verify Code</button>
+                    <button id="verify-button" class="w-full bg-green-500 text-white my-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer transition">Verifikasi Kode</button>
                     <p id="error-message" class="text-red-500 hidden mb-4"></p>
                     <a href="{{ url('/login') }}">
                     <button class="px-4 py-2 mt-4 bg-gray-300 text-black rounded-md hover:bg-gray-400 cursor-pointer">Kembali</button>
@@ -65,13 +65,13 @@
 <div id="reset-password-modal" class="fixed inset-0 backdrop-blur-md hidden flex justify-center items-center 
     @if (session('modalOpen') || $errors->has('password') || $errors->has('password_confirmation')) @else hidden @endif">
     <div class="bg-white p-12 rounded-lg shadow-lg w-full max-w-md" style="font-family: 'Urbanist', sans-serif;">
-        <h2 class="text-xl font-bold mb-4">Reset Password</h2>
+        <h2 class="text-xl font-bold mb-4">Ganti Password</h2>
 
         <form id="reset-password-form" action="{{ url('/forgot-password/reset-password') }}" method="POST">
             @csrf
 
             <!-- New Password Input -->
-            <label class="block text-gray-700">New Password</label>
+            <label class="block text-gray-700">Password Baru</label>
             <div class="relative w-full">
                 <input type="password" name="password" id="new-password" required
                     class="w-full px-4 py-2 border rounded-lg pr-10 @error('password') border-red-500 @enderror">
@@ -85,16 +85,16 @@
             <!-- Show specific password errors under the New Password field -->
             @foreach ($errors->get('password') as $message)
                 @if (str_contains($message, 'at least one number'))
-                    <p class="text-red-500 text-sm mt-1">The password must contain at least one number.</p>
+                    <p class="text-red-500 text-sm mt-1">Password harus memiliki minimal satu angka.</p>
                 @elseif (str_contains($message, 'at least one special character'))
-                    <p class="text-red-500 text-sm mt-1">The password must contain at least one special character.</p>
+                    <p class="text-red-500 text-sm mt-1">Password harus memiliki simbol/karakter spesial.</p>
                 @elseif (!str_contains($message, 'confirmation')) {{-- Ignore confirmation error here --}}
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @endif
             @endforeach
 
             <!-- Confirm Password Input -->
-            <label class="block text-gray-700 mt-2">Confirm Password</label>
+            <label class="block text-gray-700 mt-2">Konfirmasi Password Baru</label>
             <div class="relative w-full">
                 <input type="password" name="password_confirmation" id="confirm-password" required
                     class="w-full px-4 py-2 border rounded-lg pr-10 @error('password_confirmation') border-red-500 @enderror">
@@ -119,7 +119,7 @@
             <!-- Submit Button & Loading Animation -->
             <div class="relative mt-4">
                 <button type="submit" id="reset-password-button" class="w-full bg-green-500 text-white my-4 py-2 rounded-lg hover:bg-green-600 cursor-pointer transition">
-                    Reset Password
+                    Ganti Password
                 </button>
 
                 <!-- Loading Animation (Hidden Initially) -->
@@ -130,7 +130,7 @@
         </form>
 
         <button id="close-modal" class="w-full px-4 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400 cursor-pointer">
-            Close
+            Batal
         </button>
     </div>
 </div>
@@ -167,7 +167,7 @@
         let code = document.getElementById("verification_code").value;
 
         if (!code) {
-            document.getElementById("error-message").textContent = "Please enter the verification code.";
+            document.getElementById("error-message").textContent = "Tolong masukkan kode verifikasi.";
             document.getElementById("error-message").classList.remove("hidden");
             return;
         }
