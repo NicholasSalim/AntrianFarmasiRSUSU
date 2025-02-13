@@ -1362,7 +1362,23 @@
     transition: background-color 0.3s, color 0.3s;
 }
 
+.fixed-size-button {
+  width: 250px; /* Adjust the width as needed */
+  height: 110px; /* Adjust the height as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
+.remaining-tickets {
+  width: 350px; /* Adjust this value as needed */
+  height: 254px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; /* Align text to the left within the fixed width */
+}
   .sm\:visible {
     @media (width >= 40rem) {
       visibility: visible;
