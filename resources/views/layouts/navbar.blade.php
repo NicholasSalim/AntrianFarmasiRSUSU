@@ -108,23 +108,27 @@
                             @enderror
                         </div>
 
-                        <!-- New Password -->
-                        <div class="mb-4">
-                            <label class="block text-gray-700">New Password</label>
-                            <div class="relative">
-                                <input type="password" name="new_password" id="new_password"
-                                    class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 pr-10 
-                                    @error('new_password') border-red-500 @enderror">
-                                <img src="{{ asset('img/icon/hide.png') }}" id="new_password_icon"
-                                    class="w-5 h-5 absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                                    onclick="togglePassword('new_password')"
-                                    data-show="{{ asset('img/icon/show.png') }}"
-                                    data-hide="{{ asset('img/icon/hide.png') }}">
-                            </div>
-                            @error('new_password')
-                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                            @enderror
-                        </div>
+<!-- New Password -->
+<div class="mb-4">
+    <label class="block text-gray-700">New Password</label>
+    <div class="relative">
+        <input type="password" name="new_password" id="new_password"
+            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 pr-10 
+            @error('new_password') border-red-500 @enderror">
+        <img src="{{ asset('img/icon/hide.png') }}" id="new_password_icon"
+            class="w-5 h-5 absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+            onclick="togglePassword('new_password')"
+            data-show="{{ asset('img/icon/show.png') }}"
+            data-hide="{{ asset('img/icon/hide.png') }}">
+    </div>
+
+    <!-- Separate error messages -->
+@foreach ($errors->get('new_password') as $message)
+    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+@endforeach
+
+</div>
+
 
                         <!-- Confirm Password -->
                         <div class="mb-4">
