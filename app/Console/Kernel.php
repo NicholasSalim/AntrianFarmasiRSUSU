@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
  {
     // Clear tickets every day at midnight
-    $schedule->command('tickets:clear')->everyMinute();
+    $schedule->command('tickets:clear')->daily();
  }
 
     /**
