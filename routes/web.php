@@ -40,9 +40,8 @@ Route::middleware(['auth'])->group(function () {
         return view('tickets.welcome');
     })->name('home');
 
-    Route::get('/tickets/generate', function () {
-        return view('tickets.generate');
-    });
+    Route::get('/tickets/generate', [TicketController::class, 'ticketSelection'])->name('ticket.selection');
+
 
     Route::get('/tickets/display', function () {
         return view('tickets.display');

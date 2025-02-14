@@ -11,35 +11,32 @@
         Pilih jenis antrian yang ingin diambil
     </p>
 
-    <!-- Ticket Generation Cards -->
-    <div class="container mx-auto flex justify-center space-x-6 my-6">
-        <form id="ticket-form-a" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('A')">
-            @csrf
-            <input type="hidden" name="queue_type" value="A">
-            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-lg shadow-md shadow-black hover:shadow-lg hover:bg-gray-400 transition duration-300 cursor-pointer flex flex-col items-center justify-center">
-                <h2 class="text-xl font-semibold mb-6 p-2" style="font-family: 'Urbanist', sans-serif;">Antrian</h2>
-                <img src="/img/icon/a.png" alt="Tiket A" class="w-20 h-20 px-4 py-4" style="width: 100px; height: 100px;">
-            </button>
-        </form>
 
-        <form id="ticket-form-b" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('B')">
+<!-- Ticket Generation Cards -->
+<div class="container mx-auto flex justify-center space-x-6 my-6" style="font-family: 'Urbanist', sans-serif;">
+    @foreach (['A', 'B', 'R'] as $type)
+        @php
+            $lastTicket = $lastTickets[$type] ?? null;
+        @endphp
+        <form id="ticket-form-{{ strtolower($type) }}" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('{{ $type }}')">
             @csrf
-            <input type="hidden" name="queue_type" value="B">
-            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-lg shadow-md shadow-black hover:shadow-lg hover:bg-gray-400 transition duration-300 cursor-pointer flex flex-col items-center justify-center">
+            <input type="hidden" name="queue_type" value="{{ $type }}">
+            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-3xl shadow-md shadow-black hover:shadow-lg hover:bg-gray-400 transition duration-300 cursor-pointer flex flex-col items-center justify-center">
                 <h2 class="text-xl font-semibold mb-6 p-2" style="font-family: 'Urbanist', sans-serif;">Antrian</h2>
-                <img src="/img/icon/b.png" alt="Tiket B" class="w-20 h-20 px-4 py-4 " style="width: 100px; height: 100px;">
+                <img src="/img/icon/{{ strtolower($type) }}.png" alt="Tiket {{ $type }}" class="w-20 h-20 px-4 py-4" style="width: 100px; height: 100px;">
+                <div class="mt-4 text-gray-600 text-lg">
+                    @if ($lastTicket)
+                        <p class="font-bold mt-2">Tiket terakhir dibuat: {{ $lastTicket->ticket_number }}</p>
+                        <p class="text-sm">Waktu dibuat: {{ \Carbon\Carbon::parse($lastTicket->created_at)->format('H:i') }}</p>
+                    @else
+                        <p class="text-sm text-gray-500">No tickets yet</p>
+                    @endif
+                </div>
             </button>
         </form>
+    @endforeach
+</div>
 
-        <form id="ticket-form-r" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('R')">
-            @csrf
-            <input type="hidden" name="queue_type" value="R">
-            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-lg shadow-md shadow-black hover:shadow-lg hover:bg-gray-400 transition duration-300 cursor-pointer flex flex-col items-center justify-center">
-                <h2 class="text-xl font-semibold mb-6 p-2" style="font-family: 'Urbanist', sans-serif;">Antrian</h2>
-                <img src="/img/icon/r.png" alt="Tiket R" class="w-20 h-20 px-4 py-4" style="width: 100px; height: 100px;">
-            </button>
-        </form>
-    </div>
 
     <!-- Clear All Tickets Button -->
     <form id="clear-tickets-form" action="{{ route('tickets.clear') }}" method="POST" onsubmit="return confirmClearTickets(event)">
