@@ -14,9 +14,10 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function schedule(Schedule $schedule)
-    {
-        // $schedule->command('inspire')->hourly();
-    }
+ {
+    // Clear tickets every day at midnight
+    $schedule->command('tickets:clear')->everyMinute();
+ }
 
     /**
      * Register the commands for the application.
