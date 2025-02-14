@@ -1,0 +1,1 @@
+php "D:\WORK\RSUSU\AntrianFarmasiRSUSU\artisan" schedule:run
