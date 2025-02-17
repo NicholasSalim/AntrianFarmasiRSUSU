@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="flex flex-col items-center justify-center min-h-screen text-center">
+<div class="flex flex-col items-center justify-center min-h-screen text-center" style="margin-top:50px;">
     <!-- Header -->
     <h1 class="text-7xl font-bold text-white mb-6" style="font-family: 'Urbanist', sans-serif;">
         Ambil Antrian
@@ -11,32 +11,30 @@
         Pilih jenis antrian yang ingin diambil
     </p>
 
-
-<!-- Ticket Generation Cards -->
-<div class="container mx-auto flex justify-center space-x-6 my-6" style="font-family: 'Urbanist', sans-serif;">
-    @foreach (['A', 'B', 'R'] as $type)
-        @php
-            $lastTicket = $lastTickets[$type] ?? null;
-        @endphp
-        <form id="ticket-form-{{ strtolower($type) }}" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('{{ $type }}')">
-            @csrf
-            <input type="hidden" name="queue_type" value="{{ $type }}">
-            <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-3xl shadow-md shadow-black hover:shadow-lg hover:bg-gray-400 transition duration-300 cursor-pointer flex flex-col items-center justify-center">
-                <h2 class="text-xl font-semibold mb-6 p-2" style="font-family: 'Urbanist', sans-serif;">Antrian</h2>
-                <img src="/img/icon/{{ strtolower($type) }}.png" alt="Tiket {{ $type }}" class="w-20 h-20 px-4 py-4" style="width: 100px; height: 100px;">
-                <div class="mt-4 text-gray-600 text-lg">
-                    @if ($lastTicket)
-                        <p class="font-bold mt-2">Tiket terakhir dibuat: {{ $lastTicket->ticket_number }}</p>
-                        <p class="text-sm">Waktu dibuat: {{ \Carbon\Carbon::parse($lastTicket->created_at)->format('H:i') }}</p>
-                    @else
-                        <p class="text-sm text-gray-500">No tickets yet</p>
-                    @endif
-                </div>
-            </button>
-        </form>
-    @endforeach
-</div>
-
+    <!-- Ticket Generation Cards -->
+    <div class="container mx-auto flex justify-center space-x-6 my-6" style="font-family: 'Urbanist', sans-serif;">
+        @foreach (['A', 'B', 'R'] as $type)
+            @php
+                $lastTicket = $lastTickets[$type] ?? null;
+            @endphp
+            <form id="ticket-form-{{ strtolower($type) }}" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('{{ $type }}')">
+                @csrf
+                <input type="hidden" name="queue_type" value="{{ $type }}">
+                <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-3xl shadow-md shadow-black hover:shadow-lg hover:bg-gray-400 transition duration-300 cursor-pointer flex flex-col items-center justify-center">
+                    <h2 class="text-xl font-semibold mb-6 p-2" style="font-family: 'Urbanist', sans-serif;">Antrian</h2>
+                    <img src="/img/icon/{{ strtolower($type) }}.png" alt="Tiket {{ $type }}" class="w-20 h-20 px-4 py-4" style="width: 100px; height: 100px;">
+                    <div class="mt-4 text-gray-600 text-lg">
+                        @if ($lastTicket)
+                            <p class="font-bold mt-2">Tiket terakhir dibuat: {{ $lastTicket->ticket_number }}</p>
+                            <p class="text-sm">Waktu dibuat: {{ \Carbon\Carbon::parse($lastTicket->created_at)->format('H:i') }}</p>
+                        @else
+                            <p class="text-sm text-gray-500">No tickets yet</p>
+                        @endif
+                    </div>
+                </button>
+            </form>
+        @endforeach
+    </div>
 
     <!-- Clear All Tickets Button -->
     <form id="clear-tickets-form" action="{{ route('tickets.clear') }}" method="POST" onsubmit="return confirmClearTickets(event)">
@@ -126,7 +124,8 @@
         // Simulate a delay for the loading animation (replace with actual form submission logic)
         setTimeout(() => {
             document.getElementById('clear-tickets-form').submit();
-        }, 2000); // 2 seconds delay for demonstration
+        }, 250); // 2 seconds delay for demonstration
     }
 </script>
+
 @endsection

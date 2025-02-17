@@ -20,7 +20,7 @@ function confirmTicket(queueType) {
     setTimeout(() => {
         document.getElementById('loading-animation').classList.add('hidden');
         document.getElementById('confirm-content').classList.remove('hidden');
-    }, 1000); // Simulating a 1-second loading time
+    }, 250); // Simulating a 1-second loading time
 
     return false; // Prevent form submission
 }
@@ -49,7 +49,7 @@ function confirmNextTicket() {
     setTimeout(() => {
         document.getElementById('next-loading-animation').classList.add('hidden');
         document.getElementById('next-confirm-content').classList.remove('hidden');
-    }, 1000); // Simulated 1-second loading
+    }, 250); // Simulated 1-second loading
 
     return false; // Prevent form submission
 }
@@ -86,7 +86,7 @@ function confirmSelectTicket(ticketNumber, ticketId) {
 
         // Set the correct form to submit when confirmed
         document.getElementById('confirm-ticket-btn').setAttribute('onclick', `proceedToSelect('${ticketId}')`);
-    }, 1000);
+    }, 250);
 
     return false; // Prevent form submission
 }
