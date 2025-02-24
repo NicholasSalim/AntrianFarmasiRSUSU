@@ -29,7 +29,9 @@
 
             <!-- User Dropdown Menu -->
             <div class="relative" >
-                @auth
+
+                <!-- auth directive if need -->
+
                     <!-- Profile Button -->
                     <button id="profileDropdownButton" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-400 cursor-pointer" style="margin-right: 50px;">
                         <img src="{{ asset('img/icon/user.png') }}" alt="User Profile" class="w-8 h-8 rounded-full">
@@ -52,7 +54,9 @@
                             </button>
                         </form>
                     </div>
-                @endauth
+
+                <!-- endauth directive if needed -->
+
             </div>
         </div>
 

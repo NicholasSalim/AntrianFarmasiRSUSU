@@ -33,7 +33,28 @@ Route::post('/forgot-password/send-code', [ForgotPasswordController::class, 'sen
 Route::post('/forgot-password/verify-code', [ForgotPasswordController::class, 'verifyCode']);
 Route::post('/forgot-password/reset-password', [ForgotPasswordController::class, 'resetPassword']);
 
+
+//removed routes out of auth
+Route::get('/home', function () {
+    return view('tickets.welcome');
+})->name('home');
+
+Route::get('/tickets/generate', [TicketController::class, 'ticketSelection'])->name('ticket.selection');
+
+Route::get('/tickets/selfprint', [TicketController::class, 'selfprint'])->name('ticket.selfprint');
+
+Route::get('/tickets/display', function () {
+    return view('tickets.display');
+}); 
+
+Route::get('/tickets/queue', [TicketController::class, 'queue'])->name('tickets.queue');
+Route::get('/tickets/{id}', [TicketController::class, 'show'])->name('ticket.show');
+Route::get('/tickets/display', [TicketController::class, 'showQueue'])->name('tickets.display');
+
+
 // Protected Routes (Requires Authentication)
+/* currently disabled, remove comment tag to enable
+
 Route::middleware(['auth'])->group(function () {
     
     Route::get('/home', function () {
@@ -41,7 +62,7 @@ Route::middleware(['auth'])->group(function () {
     })->name('home');
 
     Route::get('/tickets/generate', [TicketController::class, 'ticketSelection'])->name('ticket.selection');
-
+    Route::get('/tickets/selfprint', [TicketController::class, 'selfprint'])->name('ticket.selfprint');
 
     Route::get('/tickets/display', function () {
         return view('tickets.display');
@@ -52,12 +73,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/tickets/display', [TicketController::class, 'showQueue'])->name('tickets.display');
     
     
-
 });
+*/
 
 
 // Ticket routes
-
 Route::post('/tickets/generate', [TicketController::class, 'generate'])->name('ticket.generate');
 Route::post('/tickets/next', [TicketController::class, 'next'])->name('tickets.next');
 Route::post('/tickets/skip/{count}', [TicketController::class, 'skip'])->name('tickets.skip');

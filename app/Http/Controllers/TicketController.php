@@ -37,7 +37,7 @@ class TicketController extends Controller {
 private function printTicket($ticket)
 {
     // Replace with the correct printer path
-    $printerName = "smb://10.52.0.254/EPSON TM-U220 Receipt"; // Using SMB path
+    $printerName = "smb://10.6.13.185/EPSON TM-U220 Receipt"; // Using SMB path
     
     try {
         // Attempt connection using the correct printer name
@@ -126,6 +126,12 @@ private function centerText($text)
 {
     $lastTickets = $this->getLastTickets(); // Fetch last issued ticket numbers
     return view('tickets.generate', compact('lastTickets')); // Pass it to the view
+}
+
+    public function selfprint()
+{
+    $lastTickets = $this->getLastTickets(); // Fetch last issued ticket numbers
+    return view('tickets.selfprint', compact('lastTickets')); // Pass it to the view
 }
 
 
