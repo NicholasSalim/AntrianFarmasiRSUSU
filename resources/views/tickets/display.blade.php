@@ -148,7 +148,7 @@ function updateTicketList() {
 }
 
 // Refresh content every 5 seconds
-setInterval(updateTicketList, 5000);
+setInterval(updateTicketList, 1000);
 
 </script>
 

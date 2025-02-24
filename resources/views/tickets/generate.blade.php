@@ -17,7 +17,7 @@
             @php
                 $lastTicket = $lastTickets[$type] ?? null;
             @endphp
-            <form id="ticket-form-{{ strtolower($type) }}" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return confirmTicket('{{ $type }}')">
+            <form id="ticket-form-{{ strtolower($type) }}" action="{{ route('ticket.generate') }}" method="POST" onsubmit="return proceedToGenerate()">
                 @csrf
                 <input type="hidden" name="queue_type" value="{{ $type }}">
                 <button type="submit" class="block w-64 h-64 bg-white mx-6 p-6 rounded-3xl shadow-md shadow-black hover:shadow-lg hover:bg-gray-400 transition duration-300 cursor-pointer flex flex-col items-center justify-center">

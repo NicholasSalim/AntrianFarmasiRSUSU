@@ -33,11 +33,32 @@ class TicketController extends Controller {
     return redirect()->route('ticket.generate'); // Redirect back to the ticket generation page
 }
 
+public function nextByType($queueType)
+    {
+        // Mark the current active ticket as completed
+        $currentTicket = Ticket::where('status', 'active')->first();
+        if ($currentTicket) {
+            $currentTicket->update(['status' => 'completed']);
+        }
+
+        // Fetch the next pending ticket of the specified queue type
+        $nextTicket = Ticket::where('status', 'pending')
+                            ->where('queue_type', $queueType)
+                            ->orderBy('created_at', 'asc')
+                            ->first();
+
+        if ($nextTicket) {
+            $nextTicket->update(['status' => 'active']);
+        }
+
+        return redirect()->route('tickets.queue');
+    }
+
 
 private function printTicket($ticket)
 {
     // Replace with the correct printer path
-    $printerName = "smb://10.6.13.185/EPSON TM-U220 Receipt"; // Using SMB path
+    $printerName = "smb://10.52.0.254/EPSON TM-U220 Receipt"; // Using SMB path
     
     try {
         // Attempt connection using the correct printer name

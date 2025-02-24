@@ -18,6 +18,6 @@ class Ticket extends Model {
         $lastTicket = self::where('queue_type', $queueType)->latest()->first();
         $lastNumber = $lastTicket ? intval(substr($lastTicket->ticket_number, 2)) : 0;
 
-        return $prefix . str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
+        return $prefix . str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
     }
 }
