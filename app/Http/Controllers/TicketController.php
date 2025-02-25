@@ -58,7 +58,7 @@ public function nextByType($queueType)
 private function printTicket($ticket)
 {
     // Replace with the correct printer path
-    $printerName = "smb://10.52.0.254/EPSON TM-U220 Receipt"; // Using SMB path
+    $printerName = "smb://10.52.0.254/EPSON TM-U220 Receipat"; // Using SMB path
     
     try {
         // Attempt connection using the correct printer name
@@ -167,26 +167,54 @@ private function centerText($text)
     }
 
     public function queue()
-    {
-        // Fetch the first active ticket or the first pending ticket
-        $currentTicket = Ticket::where('status', 'active')->first(); 
+{
+    // Fetch the first active ticket or the first pending ticket
+    $currentTicket = Ticket::where('status', 'active')->first(); 
 
-        // Ensure the first ticket becomes active if no active ticket exists
-        if (!$currentTicket) {
-            $currentTicket = Ticket::where('status', 'pending')->orderBy('created_at', 'asc')->first();
-            if ($currentTicket) {
-                $currentTicket->update(['status' => 'active']); // Mark as active
-            }
+    // Ensure the first ticket becomes active if no active ticket exists
+    if (!$currentTicket) {
+        $currentTicket = Ticket::where('status', 'pending')->orderBy('created_at', 'asc')->first();
+        if ($currentTicket) {
+            $currentTicket->update(['status' => 'active']); // Mark as active
         }
-
-        // Get pending tickets (excluding the active one)
-        $pendingTickets = Ticket::where('status', 'pending')
-                                ->where('id', '!=', optional($currentTicket)->id)
-                                ->orderBy('created_at', 'asc')
-                                ->get();
-
-        return view('tickets.queue', compact('currentTicket', 'pendingTickets'));
     }
+
+    // Pagination setup
+    $ticketsPerPage = 9;
+    $currentPage = request()->query('page', 1); // Get current page from query parameter, default to 1
+    $pendingTickets = Ticket::where('status', 'pending')
+                            ->where('id', '!=', optional($currentTicket)->id)
+                            ->orderBy('created_at', 'asc')
+                            ->get(); // Fetch all pending tickets
+    $totalTickets = $pendingTickets->count();
+    $totalPages = ceil($totalTickets / $ticketsPerPage);
+    $currentTickets = $pendingTickets->forPage($currentPage, $ticketsPerPage); // Paginate the collection
+
+    // Fetch last called tickets and pending counts for each type
+    $lastCalledTickets = [];
+    $pendingCounts = [];
+    foreach (['A', 'B', 'R'] as $type) {
+        $lastCalled = Ticket::where('queue_type', $type)
+                            ->whereIn('status', ['active', 'completed'])
+                            ->orderBy('updated_at', 'desc')
+                            ->first();
+        $lastCalledTickets[$type] = $lastCalled ? $lastCalled->ticket_number : null;
+
+        $pendingCounts[$type] = Ticket::where('queue_type', $type)
+                                      ->where('status', 'pending')
+                                      ->count();
+    }
+
+    return view('tickets.queue', compact(
+        'currentTicket',
+        'pendingTickets',
+        'currentTickets',
+        'currentPage',
+        'totalPages',
+        'lastCalledTickets',
+        'pendingCounts'
+    ));
+}
 
     // Move to the next ticket
     public function next()

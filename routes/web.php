@@ -36,3 +36,4 @@ Route::post('/tickets/set-current/{id}', [TicketController::class, 'setCurrent']
 Route::post('/tickets/clear', [TicketController::class, 'clear'])->name('tickets.clear');
 
 Route::post('/change-password', [AuthController::class, 'changePassword'])->name('password.update');
+Route::get('/tickets/queue-data', [TicketController::class, 'getQueueData'])->name('tickets.queueData');

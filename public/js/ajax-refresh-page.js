@@ -21,4 +21,4 @@
     // Set an interval to fetch updated content every 5 seconds
     setInterval(function() {
         updateTicketList();
-    }, 5000); // Refresh every 5 seconds
+    }, 1000); // Refresh every 5 seconds
