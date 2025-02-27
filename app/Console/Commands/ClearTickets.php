@@ -3,7 +3,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\Ticket; // Assuming you have a Ticket model
+use App\Models\Ticket;
+use Illuminate\Support\Facades\DB;
 
 class ClearTickets extends Command
 {
@@ -19,7 +20,7 @@ class ClearTickets extends Command
      *
      * @var string
      */
-    protected $description = 'Clear all tickets from the database';
+    protected $description = 'Clear all tickets and reset ticket counters';
 
     /**
      * Execute the console command.
@@ -27,8 +28,12 @@ class ClearTickets extends Command
     public function handle()
     {
         // Delete all tickets from the database
-        Ticket::truncate(); // This will delete all rows from the tickets table
+        Ticket::truncate(); // Clears the tickets table
+        
+        // Reset ticket counters to start from 001
+        DB::table('ticket_counters')->truncate(); // Wipes ticket_counters
+        // Alternative: DB::table('ticket_counters')->update(['last_number' => 0]); // Resets to 0, keeps queue_type rows
 
-        $this->info('All tickets have been cleared successfully.');
+        $this->info('All tickets have been cleared and ticket numbers reset successfully.');
     }
 }
